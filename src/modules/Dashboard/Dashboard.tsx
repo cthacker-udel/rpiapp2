@@ -114,7 +114,7 @@ export const Dashboard = (): JSX.Element => {
                         <h1 className="text-white">{"How to begin"}</h1>
                         <p>
                             {
-                                "Click the 'Select Pi' button above, this will show a drawer on the right-hand side of your screen with the available pavers to view data on, click on one of the pavers to begin seeing data"
+                                "Click the 'Select Pi' button above, this will show a drawer on the right-hand side of your screen with the available pavers to view data about, click on one of the pavers to begin seeing data about the selected paver."
                             }
                         </p>
                     </article>
