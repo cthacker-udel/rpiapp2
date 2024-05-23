@@ -6,6 +6,6 @@ export const metadataConstants: Metadata = {
     ],
     category: "Raspberry Pi Paver Temperature Project",
     creator: "Cameron M.C. Thacker",
-    icons: "udiconnobg.ico",
+    icons: "/udiconnobg.ico",
     keywords: "nextjs, raspberry-pi, pi, temperature reading, recharts",
 };
