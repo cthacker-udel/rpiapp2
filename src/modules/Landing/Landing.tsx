@@ -101,7 +101,7 @@ export const Landing = (): JSX.Element => {
                 </div>
                 <div className="flex flex-row justify-center w-full">
                     <span className="!animate-delay-1000 animate-fadeIn w-2/3">
-                        <Link href="dashboard">
+                        <Link href="project">
                             <button
                                 className="btn btn-neutral hover:animate-rubberBand w-full"
                                 type="button"

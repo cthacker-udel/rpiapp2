@@ -13,6 +13,8 @@ import {
 
 import { useTemperature } from "@/hooks/reactquery/temperature/useTemperature";
 
+import { LdsLoader } from "../Loaders/LdsLoader";
+
 /**
  *
  * @returns s
@@ -30,13 +32,42 @@ export const Dashboard = (): JSX.Element => {
         [],
     );
 
-    const tooltipFormatter = React.useCallback(
+    const tooltipLabelFormatter = React.useCallback(
         (date: Date) => dayjs(date).format("MM/DD/YYYY hh:mm"),
         [],
     );
 
+    const tooltipValueFormatter = React.useCallback(
+        (value: number, name: string) => {
+            switch (name) {
+                case "kelvin": {
+                    return `${value} °K`;
+                }
+                case "fahrenheit": {
+                    return `${value} °F`;
+                }
+                case "celsius": {
+                    return `${value} °C`;
+                }
+                default: {
+                    return `${value}`;
+                }
+            }
+        },
+        [],
+    );
+
+    const degToString = React.useCallback((value: number) => `${value}°`, []);
+
     if (isLoading || isFetching || status !== "success") {
-        return <span />;
+        return (
+            <div className="flex-grow flex flex-col justify-center items-center gap-3">
+                <span className="animate-pulse animate-infinite text-lg">
+                    {"Loading Temperatures..."}
+                </span>
+                <LdsLoader />
+            </div>
+        );
     }
 
     return (
@@ -47,15 +78,11 @@ export const Dashboard = (): JSX.Element => {
                     dataKey="temperature_timestamp"
                     tickFormatter={formatDate}
                 />
-                <YAxis
-                    label={{
-                        angle: -90,
-                        offset: 0,
-                        position: "left",
-                        value: "Temperature",
-                    }}
+                <YAxis tickFormatter={degToString} />
+                <Tooltip
+                    formatter={tooltipValueFormatter}
+                    labelFormatter={tooltipLabelFormatter}
                 />
-                <Tooltip labelFormatter={tooltipFormatter} />
                 <Legend />
                 <Line dataKey="fahrenheit" stroke="#8884d8" type="monotone" />
                 <Line dataKey="celsius" stroke="#c9264e" type="monotone" />
