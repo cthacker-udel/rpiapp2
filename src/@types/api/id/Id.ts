@@ -1,6 +1,8 @@
+import type { Temperature } from "../temperature/Temperature";
+
 export type Id = {
     /** PK */
-    id: number;
+    id: bigint;
 
     /** Id of the pi (used internally) */
     pi_id: string;
@@ -10,4 +12,6 @@ export type Id = {
 
     /** The date when the id was created */
     created_at: Date;
+
+    temperatures?: Temperature[];
 };

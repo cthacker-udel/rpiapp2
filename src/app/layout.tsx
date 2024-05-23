@@ -10,6 +10,7 @@ import {
     quickSand,
     sourceCodePro,
 } from "@/@lib/font";
+import { QueryProvider } from "@/providers/query/QueryProvider";
 
 /**
  *
@@ -28,7 +29,7 @@ const RootLayout = ({
         <body
             className={`${jetBrains.variable} ${quickSand.variable} ${bebasNeue.variable} ${jetBrains.variable} ${poppins.className} ${poppins.variable} ${sourceCodePro.variable} relative h-screen w-screen`}
         >
-            {children}
+            <QueryProvider>{children}</QueryProvider>
         </body>
     </html>
 );

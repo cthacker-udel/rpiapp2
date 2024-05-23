@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model ids {
+  id           BigInt         @id @default(autoincrement()) @db.UnsignedBigInt
+  pi_id        String?        @unique(map: "pi_id") @db.VarChar(6)
+  name         String?        @db.VarChar(10)
+  created_at   DateTime       @db.DateTime(0)
+  temperatures temperatures[]
+}
+
+model temperatures {
+  id                    BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  celsius               Float    @default(0) @db.Float
+  fahrenheit            Float    @default(0) @db.Float
+  kelvin                Float    @default(0) @db.Float
+  temperature_timestamp DateTime @default(now()) @db.Timestamp(0)
+  pi_id                 String?  @db.VarChar(6)
+  ids                   ids?     @relation(fields: [pi_id], references: [pi_id], onDelete: Restrict, onUpdate: Restrict, map: "temperatures_ibfk_1")
+
+  @@index([pi_id], map: "pi_id")
+}

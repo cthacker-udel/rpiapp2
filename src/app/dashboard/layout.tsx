@@ -1,5 +1,6 @@
-import { Topbar } from "@/modules/Topbar/Topbar";
 import React from "react";
+
+import { Topbar } from "@/modules/Topbar/Topbar";
 
 /**
  *
