@@ -25,6 +25,7 @@ const config: Config = withAnimations(
             "btn-success",
             "btn-primary",
             "btn-neutral",
+            "btn-ghost",
             "btn-disabled",
             "badge-primary",
             "badge-success",

@@ -10,11 +10,15 @@ import { ServerEndpoints } from "@/api/constants/ServerEndpoints";
  * @returns
  */
 const fetchPiIds = async (): Promise<Id[]> => {
-    const response = await ClientSideApi.get<Id[]>(
-        `${ServerEndpoints.PI.BASE}`,
-    );
+    try {
+        const response = await ClientSideApi.get<Id[]>(
+            `${ServerEndpoints.PI.BASE}`,
+        );
 
-    return response;
+        return response;
+    } catch {
+        return [];
+    }
 };
 
 /**

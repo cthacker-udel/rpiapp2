@@ -50,14 +50,15 @@ export const Topbar = (): JSX.Element => {
                 >
                     {"Project"}
                 </Link>
-                <Link className="btn ml-3 btn-sm" href="project/details">
+                <Link
+                    className={`btn ml-3 btn-sm ${pathName === "/project/details" ? "btn-neutral btn-disabled" : ""}`}
+                    href="project/details"
+                >
                     {"Details"}
                 </Link>
-                <Link className="btn ml-3 btn-sm" href="project/credits">
-                    {"Credits"}
-                </Link>
                 <button
-                    className={`btn ml-3 btn-sm btn-info text-white ${showPiDrawer ? "" : "btn-outline"}`}
+                    className={`btn ml-3 btn-sm btn-info text-white ${showPiDrawer ? "" : "btn-outline"} ${pathName === "/project" ? "animate-bounceIn" : "animate-bounceOut"}`}
+                    disabled={pathName !== "/project"}
                     onClick={toggleDrawer}
                     type="button"
                 >
