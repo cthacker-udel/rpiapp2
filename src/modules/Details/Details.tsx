@@ -9,7 +9,7 @@ import React from "react";
 export const Details = (): JSX.Element => (
     <div className="flex-grow flex flex-col justify-center items-center">
         <div className="flex w-2/3">
-            <div>
+            <div className="animate-fadeInLeft">
                 <article className="prose">
                     <h1>{"Project Background and Acknowledgements"}</h1>
                     <p>
@@ -20,7 +20,7 @@ export const Details = (): JSX.Element => (
                 </article>
             </div>
             <div className="divider divider-horizontal px-10" />
-            <div className="flex flex-col gap-y-14">
+            <div className="flex flex-col gap-y-14 animate-fadeInRight">
                 <article className="prose">
                     <h1 className="text-nowrap">
                         {"What is the sensor reading?"}
