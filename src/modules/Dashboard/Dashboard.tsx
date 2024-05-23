@@ -144,6 +144,7 @@ export const Dashboard = (): JSX.Element => {
                     dataKey="temperature_timestamp"
                     height={30}
                     stroke="#867835"
+                    tickFormatter={formatDate}
                 />
             </LineChart>
         </div>
