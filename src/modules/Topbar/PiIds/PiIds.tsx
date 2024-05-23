@@ -32,7 +32,11 @@ export const PiIds = (): JSX.Element => {
     return (
         <ul className="menu rounded-box">
             {piIds.map((eachId) => (
-                <li key={eachId.id} onClick={emitChosenPi(eachId)}>
+                <li
+                    className="border rounded-btn"
+                    key={eachId.id}
+                    onClick={emitChosenPi(eachId)}
+                >
                     <a
                         className={
                             selectedName === eachId.name

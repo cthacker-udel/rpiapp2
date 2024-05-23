@@ -6,6 +6,10 @@ import { usePathname } from "next/navigation";
 import React from "react";
 
 import { PiIds } from "./PiIds/PiIds";
+import { IoHome } from "react-icons/io5";
+import { FaRaspberryPi } from "react-icons/fa";
+import { CgDetailsMore } from "react-icons/cg";
+import { IoIosConstruct } from "react-icons/io";
 
 /**
  *
@@ -19,6 +23,16 @@ export const Topbar = (): JSX.Element => {
     const toggleDrawer = React.useCallback((): void => {
         setShowPiDrawer((oldValue) => !oldValue);
     }, []);
+
+    React.useEffect(() => {
+        if (
+            pathName !== undefined &&
+            pathName.length > 0 &&
+            pathName !== "/project"
+        ) {
+            setShowPiDrawer(false);
+        }
+    }, [pathName]);
 
     return (
         <div className="navbar bg-base-100">
@@ -42,26 +56,30 @@ export const Topbar = (): JSX.Element => {
                     </a>
                 </div>
                 <Link className="btn ml-3 btn-sm" href="/">
+                    <IoHome />
                     {"Home"}
                 </Link>
                 <Link
                     className={`btn ml-3 btn-sm ${pathName === "/project" ? "btn-neutral btn-disabled" : ""}`}
                     href="/project"
                 >
+                    <IoIosConstruct />
                     {"Project"}
                 </Link>
                 <Link
                     className={`btn ml-3 btn-sm ${pathName === "/project/details" ? "btn-neutral btn-disabled" : ""}`}
                     href="project/details"
                 >
+                    <CgDetailsMore />
                     {"Details"}
                 </Link>
                 <button
-                    className={`btn ml-3 btn-sm btn-info text-white ${showPiDrawer ? "" : "btn-outline"} ${pathName === "/project" ? "animate-bounceIn" : "animate-bounceOut"}`}
+                    className={`btn ml-3 btn-sm btn-info text-white ${showPiDrawer ? "" : "btn-outline hover:!text-white"} ${pathName === "/project" ? "animate-bounceIn" : "animate-bounceOut"}`}
                     disabled={pathName !== "/project"}
                     onClick={toggleDrawer}
                     type="button"
                 >
+                    <FaRaspberryPi />
                     {"Select Pi"}
                 </button>
                 {/* @ts-expect-error -- ignore error for this */}
@@ -71,7 +89,10 @@ export const Topbar = (): JSX.Element => {
                     overlay={false}
                     placement="right"
                 >
-                    <div className="text-lg">{"Available Pavers"}</div>
+                    <div className="text-lg text-center">
+                        {"Available Pavers"}
+                    </div>
+                    <div className="divider" />
                     <div>
                         <PiIds />
                     </div>
