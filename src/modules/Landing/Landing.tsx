@@ -97,7 +97,7 @@ export const Landing = (): JSX.Element => {
         <div className="w-full h-full flex flex-col justify-center items-center gap-5 relative">
             <div className="animate-backInDown flex flex-col gap-8">
                 <div className="text-4xl">
-                    {"Welcome to the Raspberry Pi Paver Project!"}
+                    {"Recycled Waste in Sustainable Concrete Pavers"}
                 </div>
                 <div className="flex flex-row justify-center w-full">
                     <span className="!animate-delay-1000 animate-fadeIn w-2/3">
