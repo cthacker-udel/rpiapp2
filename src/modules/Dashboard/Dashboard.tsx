@@ -2,6 +2,7 @@
 import dayjs from "dayjs";
 import React from "react";
 import {
+    Brush,
     CartesianGrid,
     Legend,
     Line,
@@ -87,7 +88,10 @@ export const Dashboard = (): JSX.Element => {
         };
     }, [processSelectedIdEvent]);
 
-    if (isLoading || isFetching || status !== "success") {
+    if (
+        selectedId === undefined &&
+        (isLoading || isFetching || status !== "success")
+    ) {
         return (
             <div className="flex-grow flex flex-col justify-center items-center gap-3">
                 <span className="animate-pulse animate-infinite text-lg">
@@ -136,6 +140,11 @@ export const Dashboard = (): JSX.Element => {
                 <Line dataKey="fahrenheit" stroke="#8884d8" type="monotone" />
                 <Line dataKey="celsius" stroke="#c9264e" type="monotone" />
                 <Line dataKey="kelvin" stroke="#82ca9d" type="monotone" />
+                <Brush
+                    dataKey="temperature_timestamp"
+                    height={30}
+                    stroke="#867835"
+                />
             </LineChart>
         </div>
     );
