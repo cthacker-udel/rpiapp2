@@ -4,12 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import { CgDetailsMore } from "react-icons/cg";
+import { FaRaspberryPi } from "react-icons/fa";
+import { IoIosConstruct } from "react-icons/io";
+import { IoHome } from "react-icons/io5";
 
 import { PiIds } from "./PiIds/PiIds";
-import { IoHome } from "react-icons/io5";
-import { FaRaspberryPi } from "react-icons/fa";
-import { CgDetailsMore } from "react-icons/cg";
-import { IoIosConstruct } from "react-icons/io";
 
 /**
  *
