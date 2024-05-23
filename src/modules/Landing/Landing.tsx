@@ -114,7 +114,7 @@ export const Landing = (): JSX.Element => {
             </div>
             {showSponsors && (
                 <div
-                    className="flex flex-row items-center gap-4 bg-blue-gray-400 bg-opacity-30 p-3 rounded-btn mt-28 absolute top-2/4 max-h-32"
+                    className="flex flex-row items-center gap-4 bg-blue-gray-400 bg-opacity-30 p-3 rounded-btn mt-28 absolute top-2/4 max-h-32 animate-fadeIn"
                     id="sponsor_container"
                 >
                     {...IMAGES.map((eachImage, index) => (
