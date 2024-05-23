@@ -99,13 +99,27 @@ export const Dashboard = (): JSX.Element => {
     }
 
     return (
-        <div className="flex-grow flex flex-col justify-center items-center">
-            <div
-                className="text-xl font-bold flex flex-row justify-center"
-                style={{ width: "1500px" }}
-            >
-                {selectedId === undefined ? "Select a Pi!" : selectedId.name}
-            </div>
+        <div className="flex-grow flex flex-col justify-center items-center relative">
+            {selectedId !== undefined && (
+                <div
+                    className="text-xl font-bold flex flex-row justify-center"
+                    style={{ width: "1500px" }}
+                >
+                    {selectedId.name}
+                </div>
+            )}
+            {selectedId === undefined && (
+                <div className="absolute w-full h-full flex flex-col justify-center items-center text-2xl font-bold z-10 bg-black bg-opacity-50 pointer-events-none">
+                    <article className="prose text-white pointer-events-auto">
+                        <h1 className="text-white">{"How to begin"}</h1>
+                        <p>
+                            {
+                                "Click the 'Select Pi' button above, this will show a drawer on the right-hand side of your screen with the available pavers to view data on, click on one of the pavers to begin seeing data"
+                            }
+                        </p>
+                    </article>
+                </div>
+            )}
 
             <LineChart data={temperatureData} height={750} width={1500}>
                 <CartesianGrid strokeDasharray="3 3" />
