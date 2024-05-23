@@ -2,6 +2,7 @@ import { type NextRequest, NextResponse } from "next/server";
 
 import prisma from "@/@lib/prismaClient";
 import type { Id } from "@/@types/api/id/Id";
+import { xorString } from "@/common/helpers/components/xorString";
 
 /**
  * Fetches all temperatures from the database
@@ -14,7 +15,13 @@ const getAllPiIds = async (
 ): Promise<NextResponse<Id[]>> => {
     const fetchedPiIds = await prisma.ids.findMany();
 
-    return NextResponse.json(fetchedPiIds as Id[]);
+    const mappedPiIds = fetchedPiIds.map((eachPiId) => ({
+        ...eachPiId,
+        id: eachPiId.id.toString(),
+        pi_id: xorString(eachPiId.pi_id ?? "", process.env.ID_XOR_KEY ?? ""),
+    }));
+
+    return NextResponse.json(mappedPiIds as Id[]);
 };
 
 export { getAllPiIds as GET };

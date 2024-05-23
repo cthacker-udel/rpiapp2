@@ -1,6 +1,6 @@
 export const ServerEndpoints = {
     PI: {
-        BASE: "pi/",
+        BASE: "ids/",
     },
     TEMPERATURE: {
         BASE: "temperature/",

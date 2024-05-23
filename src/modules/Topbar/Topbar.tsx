@@ -1,10 +1,11 @@
 "use client";
+import { Drawer } from "@material-tailwind/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { PiSelect } from "./PiSelect/PiSelect";
-import { Drawer } from "@material-tailwind/react";
+
+import { PiIds } from "./PiIds/PiIds";
 
 /**
  *
@@ -56,7 +57,7 @@ export const Topbar = (): JSX.Element => {
                     {"Credits"}
                 </Link>
                 <button
-                    className="btn ml-3 btn-sm btn-info text-white"
+                    className={`btn ml-3 btn-sm btn-info text-white ${showPiDrawer ? "" : "btn-outline"}`}
                     onClick={toggleDrawer}
                     type="button"
                 >
@@ -69,7 +70,10 @@ export const Topbar = (): JSX.Element => {
                     overlay={false}
                     placement="right"
                 >
-                    <div>{"Available Pavers"}</div>
+                    <div className="text-lg">{"Available Pavers"}</div>
+                    <div>
+                        <PiIds />
+                    </div>
                 </Drawer>
             </div>
         </div>

@@ -1,8 +1,9 @@
+/* eslint-disable node/no-unpublished-import -- disabled */
 import "./globals.css";
+import "tailwindcss/tailwind.css";
 
 import Script from "next/script";
 import React from "react";
-import "tailwindcss/tailwind.css";
 
 import {
     bebasNeue,

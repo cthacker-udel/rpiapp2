@@ -11,6 +11,9 @@ import {
     YAxis,
 } from "recharts";
 
+import type { Id } from "@/@types/api/id/Id";
+import type { SelectedPiEvent } from "@/@types/events/selectedPi/selectedPiEvent";
+import { Events } from "@/common/constants/events/Events";
 import { useTemperature } from "@/hooks/reactquery/temperature/useTemperature";
 
 import { LdsLoader } from "../Loaders/LdsLoader";
@@ -20,12 +23,16 @@ import { LdsLoader } from "../Loaders/LdsLoader";
  * @returns s
  */
 export const Dashboard = (): JSX.Element => {
+    const [selectedId, setSelectedId] = React.useState<Id | undefined>(
+        undefined,
+    );
+
     const {
         data: temperatureData,
         isLoading,
         isFetching,
         status,
-    } = useTemperature();
+    } = useTemperature({ selectedId });
 
     const formatDate = React.useCallback(
         (date: Date): string => dayjs(date).format("MM/DD/YYYY hh:mm"),
@@ -36,6 +43,16 @@ export const Dashboard = (): JSX.Element => {
         (date: Date) => dayjs(date).format("MM/DD/YYYY hh:mm"),
         [],
     );
+
+    const processSelectedIdEvent = React.useCallback((event: Event) => {
+        const mappedEvent = event as CustomEvent<SelectedPiEvent>;
+
+        const { detail } = mappedEvent;
+        if (detail !== undefined) {
+            const { id } = detail;
+            setSelectedId(id);
+        }
+    }, []);
 
     const tooltipValueFormatter = React.useCallback(
         (value: number, name: string) => {
@@ -59,6 +76,17 @@ export const Dashboard = (): JSX.Element => {
 
     const degToString = React.useCallback((value: number) => `${value}°`, []);
 
+    React.useEffect(() => {
+        document.addEventListener(Events.SELECTED_PI, processSelectedIdEvent);
+
+        return (): void => {
+            document.removeEventListener(
+                Events.SELECTED_PI,
+                processSelectedIdEvent,
+            );
+        };
+    }, [processSelectedIdEvent]);
+
     if (isLoading || isFetching || status !== "success") {
         return (
             <div className="flex-grow flex flex-col justify-center items-center gap-3">
@@ -72,6 +100,13 @@ export const Dashboard = (): JSX.Element => {
 
     return (
         <div className="flex-grow flex flex-col justify-center items-center">
+            <div
+                className="text-xl font-bold flex flex-row justify-center"
+                style={{ width: "1500px" }}
+            >
+                {selectedId === undefined ? "Select a Pi!" : selectedId.name}
+            </div>
+
             <LineChart data={temperatureData} height={750} width={1500}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis

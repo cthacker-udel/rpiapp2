@@ -2,7 +2,7 @@ import type { Temperature } from "../temperature/Temperature";
 
 export type Id = {
     /** PK */
-    id: bigint;
+    id: string;
 
     /** Id of the pi (used internally) */
     pi_id: string;
