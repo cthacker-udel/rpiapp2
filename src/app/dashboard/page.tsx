@@ -1,7 +1,7 @@
 import React from "react";
 
 import type { PageProperties } from "@/@types/next";
-import { Landing } from "@/modules/Landing/Landing";
+import { Dashboard } from "@/modules/Dashboard/Dashboard";
 
 /**
  *
@@ -11,6 +11,6 @@ import { Landing } from "@/modules/Landing/Landing";
 const Page = ({
     params: _parameters,
     searchParams: _searchParameters,
-}: PageProperties): JSX.Element => <Landing />;
+}: PageProperties): JSX.Element => <Dashboard />;
 
 export default Page;
