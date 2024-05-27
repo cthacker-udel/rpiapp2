@@ -52,7 +52,8 @@ export const Dashboard = (): JSX.Element => {
         [],
     );
 
-    /** Processes the event fired from the TopBar component
+    /**
+     * Processes the event fired from the TopBar component
      *
      * @param event - The event fired from the TopBar component
      */
