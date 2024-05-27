@@ -1,3 +1,5 @@
+import "server-only";
+
 /* eslint-disable require-await -- disabled  */
 /* eslint-disable @typescript-eslint/require-await -- disabled */
 import { type NextRequest, NextResponse } from "next/server";
