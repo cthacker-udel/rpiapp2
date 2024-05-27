@@ -1,9 +1,15 @@
 /* eslint-disable require-await -- disabled */
-import { useQuery, type UseQueryResult } from "@tanstack/react-query";
+import {
+    type QueryObserverResult,
+    useQuery,
+    type UseQueryResult,
+} from "@tanstack/react-query";
 
 import type { Id } from "@/@types/api/id/Id";
 import { ClientSideApi } from "@/api/client/ClientSideApi";
 import { ServerEndpoints } from "@/api/constants/ServerEndpoints";
+
+type CallbackType = () => QueryObserverResult<Id[]>;
 
 /**
  *
@@ -25,8 +31,8 @@ const fetchPiIds = async (): Promise<Id[]> => {
  *
  * @returns
  */
-const useId = (): UseQueryResult<Id[]> =>
-    useQuery({
+const useId: CallbackType = (): UseQueryResult<Id[]> =>
+    useQuery<Id[], Error, Id[], string[]>({
         queryFn: async () => fetchPiIds(),
         queryKey: ["pi_ids"],
         staleTime: 30_000,

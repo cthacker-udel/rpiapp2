@@ -60,13 +60,14 @@ export const Topbar = (): JSX.Element => {
                 </div>
             </div>
             <div className="navbar-start hidden lg:flex">
-                <Link className="btn ml-3 btn-sm" href="/">
+                <Link className="btn ml-3 btn-sm" href="/" title="Home Page">
                     <IoHome />
                     {"Home"}
                 </Link>
                 <Link
                     className={`btn ml-3 btn-sm ${pathName === "/project" ? BUTTON_DISABLED_STYLE : ""}`}
                     href="/project"
+                    title="Project Page"
                 >
                     <IoIosConstruct />
                     {"Project"}
@@ -74,6 +75,7 @@ export const Topbar = (): JSX.Element => {
                 <Link
                     className={`btn ml-3 btn-sm ${pathName === "/project/details" ? BUTTON_DISABLED_STYLE : ""}`}
                     href="project/details"
+                    title="Details Page"
                 >
                     <CgDetailsMore />
                     {"Details"}
@@ -82,6 +84,7 @@ export const Topbar = (): JSX.Element => {
                     className={`btn ml-3 btn-sm btn-info text-white ${showPiDrawer ? "" : "btn-outline hover:!text-white"} ${pathName === "/project" ? "animate-bounceIn" : "animate-bounceOut"}`}
                     disabled={pathName !== "/project"}
                     onClick={toggleDrawer}
+                    title="Select Paver Dropdown Toggle"
                     type="button"
                 >
                     <FaRaspberryPi />

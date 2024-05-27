@@ -16,6 +16,7 @@ import {
 import type { Id } from "@/@types/api/id/Id";
 import type { SelectedPiEvent } from "@/@types/events/selectedPi/selectedPiEvent";
 import { Events } from "@/common/constants/events/Events";
+import { sessionStorageKeys } from "@/common/constants/keys/sessionStorageKeys";
 import { useTemperature } from "@/hooks/reactquery/temperature/useTemperature";
 
 import { LdsLoader } from "../Loaders/LdsLoader";
@@ -53,6 +54,10 @@ export const Dashboard = (): JSX.Element => {
         if (detail !== undefined) {
             const { id } = detail;
             setSelectedId(id);
+            sessionStorage.setItem(
+                sessionStorageKeys.DASHBOARD_SELECTED_PI_ID,
+                JSON.stringify(id),
+            );
         }
     }, []);
 
@@ -79,7 +84,18 @@ export const Dashboard = (): JSX.Element => {
     const degToString = React.useCallback((value: number) => `${value}°`, []);
 
     React.useEffect(() => {
-        document.addEventListener(Events.SELECTED_PI, processSelectedIdEvent);
+        if (document !== undefined) {
+            document.addEventListener(
+                Events.SELECTED_PI,
+                processSelectedIdEvent,
+            );
+            const sessionId = sessionStorage.getItem(
+                sessionStorageKeys.DASHBOARD_SELECTED_PI_ID,
+            );
+            if (sessionId !== null) {
+                setSelectedId(JSON.parse(sessionId) as Id);
+            }
+        }
 
         return (): void => {
             document.removeEventListener(

@@ -13,5 +13,6 @@ export type Id = {
     /** The date when the id was created */
     created_at: Date;
 
+    /** Temperatures associated with the Pi Id */
     temperatures?: Temperature[];
 };
