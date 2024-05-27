@@ -7,6 +7,7 @@ import {
     Legend,
     Line,
     LineChart,
+    ResponsiveContainer,
     Tooltip,
     XAxis,
     YAxis,
@@ -113,10 +114,10 @@ export const Dashboard = (): JSX.Element => {
                 </div>
             )}
             {selectedId === undefined && (
-                <div className="absolute w-full h-full flex flex-col justify-center items-center text-2xl font-bold z-10 bg-black bg-opacity-50 pointer-events-none">
-                    <article className="prose text-white pointer-events-auto">
+                <div className="absolute w-full h-full flex flex-col justify-center items-center text-2xl font-bold z-[2] bg-black bg-opacity-50 pointer-events-none">
+                    <article className="prose text-white pointer-events-auto text-center">
                         <h1 className="text-white">{"How to begin"}</h1>
-                        <p>
+                        <p className="p-3 lg:p-0">
                             {
                                 "Click the 'Select Pi' button above, this will show a drawer on the right-hand side of your screen with the available pavers to view data about, click on one of the pavers to begin seeing data about the selected paver."
                             }
@@ -125,28 +126,34 @@ export const Dashboard = (): JSX.Element => {
                 </div>
             )}
 
-            <LineChart data={temperatureData} height={750} width={1500}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis
-                    dataKey="temperature_timestamp"
-                    tickFormatter={formatDate}
-                />
-                <YAxis tickFormatter={degToString} />
-                <Tooltip
-                    formatter={tooltipValueFormatter}
-                    labelFormatter={tooltipLabelFormatter}
-                />
-                <Legend />
-                <Line dataKey="fahrenheit" stroke="#8884d8" type="monotone" />
-                <Line dataKey="celsius" stroke="#c9264e" type="monotone" />
-                <Line dataKey="kelvin" stroke="#82ca9d" type="monotone" />
-                <Brush
-                    dataKey="temperature_timestamp"
-                    height={30}
-                    stroke="#867835"
-                    tickFormatter={formatDate}
-                />
-            </LineChart>
+            <ResponsiveContainer height="90%" width="90%">
+                <LineChart data={temperatureData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis
+                        dataKey="temperature_timestamp"
+                        tickFormatter={formatDate}
+                    />
+                    <YAxis tickFormatter={degToString} />
+                    <Tooltip
+                        formatter={tooltipValueFormatter}
+                        labelFormatter={tooltipLabelFormatter}
+                    />
+                    <Legend />
+                    <Line
+                        dataKey="fahrenheit"
+                        stroke="#8884d8"
+                        type="monotone"
+                    />
+                    <Line dataKey="celsius" stroke="#c9264e" type="monotone" />
+                    <Line dataKey="kelvin" stroke="#82ca9d" type="monotone" />
+                    <Brush
+                        dataKey="temperature_timestamp"
+                        height={30}
+                        stroke="#867835"
+                        tickFormatter={formatDate}
+                    />
+                </LineChart>
+            </ResponsiveContainer>
         </div>
     );
 };

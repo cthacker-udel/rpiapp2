@@ -17,6 +17,7 @@ const IMAGES: ImagePayload[] = [
                 alt="CN Logo"
                 height={200}
                 key="logo1"
+                quality={90}
                 src="/cnlogo.png"
                 width={200}
             />
@@ -30,6 +31,7 @@ const IMAGES: ImagePayload[] = [
                 alt="Eco-P Logo"
                 height={200}
                 key="logo2"
+                quality={90}
                 src="/ecoplogo.png"
                 width={200}
             />
@@ -43,6 +45,7 @@ const IMAGES: ImagePayload[] = [
                 alt="Interlock Logo"
                 height={200}
                 key="logo3"
+                quality={90}
                 src="/interlocklogo.png"
                 width={200}
             />
@@ -57,6 +60,7 @@ const IMAGES: ImagePayload[] = [
                 alt="TMS Logo"
                 height={200}
                 key="logo4"
+                quality={90}
                 src="/tmslogo.png"
                 width={200}
             />
@@ -70,6 +74,7 @@ const IMAGES: ImagePayload[] = [
                 alt="UD COE Logo"
                 height={200}
                 key="logo5s"
+                quality={90}
                 src="/udcoelogo.png"
                 width={200}
             />
@@ -84,61 +89,49 @@ const IMAGES: ImagePayload[] = [
  *
  * @returns The landing page
  */
-export const Landing = (): JSX.Element => {
-    const [showSponsors, setShowSponsors] = React.useState<boolean>(false);
-
-    React.useEffect(() => {
-        setTimeout(() => {
-            setShowSponsors(true);
-        }, 2000);
-    }, []);
-
-    return (
-        <div className="w-full h-full flex flex-col justify-center items-center gap-5 relative">
-            <div className="animate-backInDown flex flex-col gap-8">
-                <div className="text-4xl">
-                    {"Recycled Waste in Sustainable Concrete Pavers"}
-                </div>
-                <div className="flex flex-row justify-center w-full">
-                    <span className="!animate-delay-1000 animate-fadeIn w-2/3">
-                        <Link href="project">
-                            <button
-                                className="btn btn-neutral hover:animate-rubberBand w-full"
-                                type="button"
-                            >
-                                {"Go To Project!"}
-                            </button>
-                        </Link>
-                    </span>
-                </div>
+export const Landing = (): JSX.Element => (
+    <div className="w-full h-full flex flex-col justify-center items-center gap-5 relative">
+        <div className="animate-backInDown flex flex-col gap-8">
+            <div className="text-xl lg:text-4xl text-center">
+                {"Recycled Waste in Sustainable Concrete Pavers"}
             </div>
-            {showSponsors && (
-                <div
-                    className="flex flex-row items-center gap-4 bg-blue-gray-400 bg-opacity-30 p-3 rounded-btn mt-28 absolute top-2/4 max-h-32 animate-fadeIn"
-                    id="sponsor_container"
-                >
-                    {...IMAGES.map((eachImage, index) => (
-                        <a
-                            className={`animate-flipInX !animate-delay-${index * (25 * 3)}`}
-                            href={eachImage.link}
-                            key={`logo_${eachImage.image.props.alt}`}
-                            ref={(link) => {
-                                if (link) {
-                                    link.style.setProperty(
-                                        "animation-delay",
-                                        `${index / 2}s`,
-                                        "important",
-                                    );
-                                }
-                            }}
-                            rel="noreferrer"
-                            target="_blank"
+            <div className="flex flex-row justify-center w-full">
+                <span className="!animate-delay-1000 animate-fadeIn w-2/3">
+                    <Link href="project">
+                        <button
+                            className="btn btn-neutral hover:animate-rubberBand w-full"
+                            type="button"
                         >
-                            {eachImage.image}
-                        </a>
-                    ))}
-                </div>
-            )}
+                            {"Go To Project!"}
+                        </button>
+                    </Link>
+                </span>
+            </div>
         </div>
-    );
-};
+        <div
+            className="flex flex-col lg:flex-row items-center gap-4 p-3 rounded-btn mt-28 absolute top-2/4 max-h-32 animate-fadeIn animate-delay-2s"
+            id="sponsor_container"
+        >
+            {...IMAGES.map((eachImage, index) => (
+                <a
+                    className="animate-flipInX"
+                    href={eachImage.link}
+                    key={`logo_${eachImage.image.props.alt}`}
+                    ref={(link) => {
+                        if (link) {
+                            link.style.setProperty(
+                                "animation-delay",
+                                `${(index + 5) / 2}s`,
+                                "important",
+                            );
+                        }
+                    }}
+                    rel="noreferrer"
+                    target="_blank"
+                >
+                    {eachImage.image}
+                </a>
+            ))}
+        </div>
+    </div>
+);

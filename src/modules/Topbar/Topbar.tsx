@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex -- disabled*/
 "use client";
 import { Drawer } from "@material-tailwind/react";
 import Image from "next/image";
@@ -10,6 +11,8 @@ import { IoIosConstruct } from "react-icons/io";
 import { IoHome } from "react-icons/io5";
 
 import { PiIds } from "./PiIds/PiIds";
+
+const BUTTON_DISABLED_STYLE = "btn-neutral btn-disabled";
 
 /**
  *
@@ -55,19 +58,21 @@ export const Topbar = (): JSX.Element => {
                         />
                     </a>
                 </div>
+            </div>
+            <div className="navbar-start hidden lg:flex">
                 <Link className="btn ml-3 btn-sm" href="/">
                     <IoHome />
                     {"Home"}
                 </Link>
                 <Link
-                    className={`btn ml-3 btn-sm ${pathName === "/project" ? "btn-neutral btn-disabled" : ""}`}
+                    className={`btn ml-3 btn-sm ${pathName === "/project" ? BUTTON_DISABLED_STYLE : ""}`}
                     href="/project"
                 >
                     <IoIosConstruct />
                     {"Project"}
                 </Link>
                 <Link
-                    className={`btn ml-3 btn-sm ${pathName === "/project/details" ? "btn-neutral btn-disabled" : ""}`}
+                    className={`btn ml-3 btn-sm ${pathName === "/project/details" ? BUTTON_DISABLED_STYLE : ""}`}
                     href="project/details"
                 >
                     <CgDetailsMore />
@@ -97,6 +102,69 @@ export const Topbar = (): JSX.Element => {
                         <PiIds />
                     </div>
                 </Drawer>
+            </div>
+            <div className="dropdown">
+                <div
+                    className="btn btn-ghost lg:hidden ml-3"
+                    role="button"
+                    tabIndex={0}
+                >
+                    <svg
+                        className="h-5 w-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M4 6h16M4 12h8m-8 6h16"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                        />
+                    </svg>
+                </div>
+                <ul
+                    className="menu menu-sm dropdown-content mt-3 z-[3] p-2 shadow bg-base-100 rounded-box w-52"
+                    tabIndex={0}
+                >
+                    <li>
+                        <Link className="btn ml-3 btn-sm" href="/">
+                            <IoHome />
+                            {"Home"}
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            className={`btn ml-3 btn-sm ${pathName === "/project" ? BUTTON_DISABLED_STYLE : ""}`}
+                            href="/project"
+                        >
+                            <IoIosConstruct />
+                            {"Project"}
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            className={`btn ml-3 btn-sm ${pathName === "/project/details" ? BUTTON_DISABLED_STYLE : ""}`}
+                            href="project/details"
+                        >
+                            <CgDetailsMore />
+                            {"Details"}
+                        </Link>
+                    </li>
+                    <li>
+                        {" "}
+                        <button
+                            className={`btn ml-3 btn-sm btn-info text-white ${showPiDrawer ? "" : "btn-outline hover:!text-white"} ${pathName === "/project" ? "animate-bounceIn" : "animate-bounceOut"}`}
+                            disabled={pathName !== "/project"}
+                            onClick={toggleDrawer}
+                            type="button"
+                        >
+                            <FaRaspberryPi />
+                            {"Select Pi"}
+                        </button>
+                    </li>
+                </ul>
             </div>
         </div>
     );
