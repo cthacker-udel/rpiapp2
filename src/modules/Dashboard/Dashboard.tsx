@@ -22,14 +22,17 @@ import { useTemperature } from "@/hooks/reactquery/temperature/useTemperature";
 import { LdsLoader } from "../Loaders/LdsLoader";
 
 /**
+ * Displays the graphical representation of the data coming from the selected paver
  *
- * @returns s
+ * @returns The main page for the project, houses the graph of data, etc
  */
 export const Dashboard = (): JSX.Element => {
+    /** The selected paver */
     const [selectedId, setSelectedId] = React.useState<Id | undefined>(
         undefined,
     );
 
+    /** Fetches the temperature data of the paver selected */
     const {
         data: temperatureData,
         isLoading,
@@ -37,16 +40,22 @@ export const Dashboard = (): JSX.Element => {
         status,
     } = useTemperature({ selectedId });
 
+    /** Used for graph, formats the date (x) labels */
     const formatDate = React.useCallback(
         (date: Date): string => dayjs(date).format("MM/DD/YYYY hh:mm"),
         [],
     );
 
+    /** Formats the tooltip header */
     const tooltipLabelFormatter = React.useCallback(
         (date: Date) => dayjs(date).format("MM/DD/YYYY hh:mm"),
         [],
     );
 
+    /** Processes the event fired from the TopBar component
+     *
+     * @param event - The event fired from the TopBar component
+     */
     const processSelectedIdEvent = React.useCallback((event: Event) => {
         const mappedEvent = event as CustomEvent<SelectedPiEvent>;
 
@@ -61,6 +70,12 @@ export const Dashboard = (): JSX.Element => {
         }
     }, []);
 
+    /**
+     * Formats the values displayed in the tooltip
+     *
+     * @param value - The actual value being displayed
+     * @param name - The key (title) of what is going to be displayed
+     */
     const tooltipValueFormatter = React.useCallback(
         (value: number, name: string) => {
             switch (name) {
@@ -81,8 +96,10 @@ export const Dashboard = (): JSX.Element => {
         [],
     );
 
+    /** Converts a string to degrees */
     const degToString = React.useCallback((value: number) => `${value}°`, []);
 
+    /** Fires when the `processSelectedIdEvent` event is fired */
     React.useEffect(() => {
         if (document !== undefined) {
             document.addEventListener(
@@ -105,6 +122,7 @@ export const Dashboard = (): JSX.Element => {
         };
     }, [processSelectedIdEvent]);
 
+    /** While the temperatures are loading, displays a loading icon with text */
     if (
         selectedId === undefined &&
         (isLoading || isFetching || status !== "success")

@@ -12,13 +12,22 @@ import { useId } from "@/hooks/reactquery/ids/useId";
 import { LdsLoader } from "@/modules/Loaders/LdsLoader";
 
 /**
+ * The dropdown list of Paver Names to select
  *
- * @returns
+ * @returns The dropdown of the paver names to select
  */
 export const PiIds = (): JSX.Element => {
+    /** The name of the selected pi, purely for recognizing what pi is "currently selected" */
     const [selectedName, setSelectedName] = React.useState<string>();
+
+    /** Fetches the data of the Raspberry Pis (Pavers) */
     const { data: piIds, isLoading, isFetching, status } = useId();
 
+    /**
+     * Emits the "chosen pi" event, which signifies that the user clicked on a Paver (pi)
+     *
+     * @id - The id (json data of the pi selected)
+     */
     const emitChosenPi = React.useCallback(
         (id: Id) => (): void => {
             emitEvent<SelectedPiEvent>(Events.SELECTED_PI, { id });
@@ -31,6 +40,10 @@ export const PiIds = (): JSX.Element => {
         [],
     );
 
+    /**
+     * Fires on mount, checks the session storage if the user has already selected a Paver, then assigns
+     * the selected paver to the one already selecteds
+     */
     React.useEffect(() => {
         if (document !== undefined) {
             const sessionSelectedName = sessionStorage.getItem(
@@ -42,6 +55,7 @@ export const PiIds = (): JSX.Element => {
         }
     }, []);
 
+    /** If the data is still loading, display loader */
     if (isLoading || isFetching || status !== "success") {
         return (
             <div className="flex justify-center">
@@ -52,7 +66,6 @@ export const PiIds = (): JSX.Element => {
 
     return (
         <ul className="menu items-center rounded-box gap-3">
-            {/* @ts-expect-error -- ignore error for this */}
             {piIds.map((eachId) => (
                 <li
                     className="border rounded-btn flex items-center w-full"

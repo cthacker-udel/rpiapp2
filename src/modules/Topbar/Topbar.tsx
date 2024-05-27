@@ -15,18 +15,25 @@ import { PiIds } from "./PiIds/PiIds";
 const BUTTON_DISABLED_STYLE = "btn-neutral btn-disabled";
 
 /**
+ * The Topbar of the application, houses the navigation
  *
- * @returns
+ * @returns The icon of UD, and the buttons used for navigating throughout the project
  */
 export const Topbar = (): JSX.Element => {
+    /** Grabs pathname (used for "currently selected") */
     const pathName = usePathname();
 
+    /** Whether to show the drawer */
     const [showPiDrawer, setShowPiDrawer] = React.useState<boolean>(false);
 
+    /** Toggles the visibility of the drawer */
     const toggleDrawer = React.useCallback((): void => {
         setShowPiDrawer((oldValue) => !oldValue);
     }, []);
 
+    /**
+     * Fires when the pathname changes, resets the drawer to hide (when the user is changing pages, etc)s
+     */
     React.useEffect(() => {
         if (
             pathName !== undefined &&
