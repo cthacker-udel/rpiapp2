@@ -87,21 +87,6 @@ export const Topbar = (): JSX.Element => {
                     <FaRaspberryPi />
                     {"Select Pi"}
                 </button>
-                {/* @ts-expect-error -- ignore error for this */}
-                <Drawer
-                    className="p-4"
-                    open={showPiDrawer}
-                    overlay={false}
-                    placement="right"
-                >
-                    <div className="text-lg text-center">
-                        {"Available Pavers"}
-                    </div>
-                    <div className="divider" />
-                    <div>
-                        <PiIds />
-                    </div>
-                </Drawer>
             </div>
             <div className="dropdown">
                 <div
@@ -125,47 +110,60 @@ export const Topbar = (): JSX.Element => {
                     </svg>
                 </div>
                 <ul
-                    className="menu menu-sm dropdown-content mt-3 z-[3] p-2 shadow bg-base-100 rounded-box w-52"
+                    className="menu menu-sm dropdown-content mt-3 z-[3] p-2 shadow bg-base-100 rounded-box w-fit gap-2"
                     tabIndex={0}
                 >
                     <li>
-                        <Link className="btn ml-3 btn-sm" href="/">
+                        <Link className="btn ml-3 btn-sm w-fit !m-0" href="/">
                             <IoHome />
-                            {"Home"}
                         </Link>
                     </li>
                     <li>
                         <Link
-                            className={`btn ml-3 btn-sm ${pathName === "/project" ? BUTTON_DISABLED_STYLE : ""}`}
+                            className={`btn ml-3 btn-sm !m-0 ${pathName === "/project" ? BUTTON_DISABLED_STYLE : ""} w-fit`}
                             href="/project"
                         >
                             <IoIosConstruct />
-                            {"Project"}
                         </Link>
                     </li>
                     <li>
                         <Link
-                            className={`btn ml-3 btn-sm ${pathName === "/project/details" ? BUTTON_DISABLED_STYLE : ""}`}
+                            className={`btn ml-3 btn-sm !m-0 ${pathName === "/project/details" ? BUTTON_DISABLED_STYLE : ""} w-fit`}
                             href="project/details"
                         >
                             <CgDetailsMore />
-                            {"Details"}
                         </Link>
                     </li>
                     <li>
                         {" "}
                         <button
-                            className={`btn ml-3 btn-sm btn-info text-white ${showPiDrawer ? "" : "btn-outline hover:!text-white"} ${pathName === "/project" ? "animate-bounceIn" : "animate-bounceOut"}`}
+                            className={`btn ml-3 btn-sm !m-0 btn-info text-white ${showPiDrawer ? "" : "btn-outline hover:!text-white"} ${pathName === "/project" ? "animate-bounceIn" : "animate-bounceOut"} w-fit`}
                             disabled={pathName !== "/project"}
                             onClick={toggleDrawer}
                             type="button"
                         >
                             <FaRaspberryPi />
-                            {"Select Pi"}
                         </button>
                     </li>
                 </ul>
-            </div>
+            </div>{" "}
+            {/* @ts-expect-error -- ignore error for this */}
+            <Drawer
+                className="p-4 w-2/3 lg:w-full"
+                open={showPiDrawer}
+                overlay={false}
+                placement="right"
+            >
+                <div className="flex flex-col w-full">
+                    <div className="text-smBase lg:text-lg text-center">
+                        {"Available Pavers"}
+                    </div>
+                    <div className="divider" />
+                    <div>
+                        <PiIds />
+                    </div>
+                </div>
+            </Drawer>
         </div>
     );
 };

@@ -6,6 +6,7 @@
         "dev": "next dev -p 8080",
         "build": "next build",
         "start": "next start",
+        "start-dev": "next start -p 8080",
         "lint": "next lint",
         "install-linter": "npm i --save-dev eslint-plugin-tsdoc eslint-plugin-jest eslint-plugin-jest-formatting eslint-plugin-security eslint-plugin-security eslint-plugin-compat eslint-config-problems eslint-config-intense eslint-config-prettier eslint-plugin-eslint-comments eslint-plugin-import eslint-plugin-no-secrets eslint-plugin-node eslint-plugin-prettier eslint-plugin-ramda eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-simple-import-sort eslint-plugin-sonarjs eslint-plugin-unicorn prettier prettier-eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-next"
     },
@@ -22,7 +23,8 @@
         "react-dom": "^18",
         "react-icons": "^5.2.1",
         "react-responsive-carousel": "^3.2.23",
-        "recharts": "^2.12.7"
+        "recharts": "^2.12.7",
+        "sharp": "^0.33.4"
     },
     "devDependencies": {
         "@types/node": "^20",

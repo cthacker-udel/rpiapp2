@@ -30,19 +30,19 @@ export const PiIds = (): JSX.Element => {
     }
 
     return (
-        <ul className="menu rounded-box">
+        <ul className="menu rounded-box gap-3">
             {piIds.map((eachId) => (
                 <li
-                    className="border rounded-btn"
+                    className="border rounded-btn flex items-center"
                     key={eachId.id}
                     onClick={emitChosenPi(eachId)}
                 >
                     <a
-                        className={
+                        className={`${
                             selectedName === eachId.name
                                 ? "bg-gray-400 pointer-events-none font-bold"
                                 : ""
-                        }
+                        }`}
                     >
                         {eachId.name}
                     </a>
