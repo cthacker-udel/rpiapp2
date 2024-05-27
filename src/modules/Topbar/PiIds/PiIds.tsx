@@ -50,8 +50,6 @@ export const PiIds = (): JSX.Element => {
         );
     }
 
-    console.log(piIds);
-
     return (
         <ul className="menu items-center rounded-box gap-3">
             {/* @ts-expect-error -- ignore error for this */}
