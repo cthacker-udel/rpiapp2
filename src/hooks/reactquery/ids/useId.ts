@@ -12,8 +12,9 @@ import { ServerEndpoints } from "@/api/constants/ServerEndpoints";
 type CallbackType = () => QueryObserverResult<Id[]>;
 
 /**
+ * Fetches the Raspberry Pi ids from the database
  *
- * @returns
+ * @returns - The found raspberry pi ids
  */
 const fetchPiIds = async (): Promise<Id[]> => {
     try {
@@ -28,8 +29,9 @@ const fetchPiIds = async (): Promise<Id[]> => {
 };
 
 /**
+ * Utility hook for fetching ids of all Raspberry Pis present in the database
  *
- * @returns
+ * @returns - The ids of the all the raspberry pis
  */
 const useId: CallbackType = (): UseQueryResult<Id[]> =>
     useQuery<Id[], Error, Id[], string[]>({

@@ -7,6 +7,7 @@ export const getBaseUrl = (): string => {
 
     prefix = currentNodeEnvironment === "production" ? "https://" : "http://";
 
+    /** If we are deploying on vercel */
     let url = process.env.NEXT_PUBLIC_VERCEL_CUSTOM_URL;
 
     if (currentNodeEnvironment === "production" && url === undefined) {

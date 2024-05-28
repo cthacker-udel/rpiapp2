@@ -151,8 +151,10 @@ export const Dashboard = (): JSX.Element => {
             {selectedId === undefined && (
                 <div className="absolute w-full h-full flex flex-col justify-center items-center text-2xl font-bold z-[2] bg-black bg-opacity-50 pointer-events-none">
                     <article className="prose text-white pointer-events-auto text-center">
-                        <h1 className="text-white">{"How to begin"}</h1>
-                        <p className="p-3 lg:p-0">
+                        <h1 className="text-white animate-jackInTheBox">
+                            {"How to begin"}
+                        </h1>
+                        <p className="p-3 lg:p-0 animate-fadeIn animate-delay-1000">
                             {
                                 "Click the 'Select Pi' button above, this will show a drawer on the right-hand side of your screen with the available pavers to view data about, click on one of the pavers to begin seeing data about the selected paver."
                             }

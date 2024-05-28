@@ -5,9 +5,10 @@ import "server-only";
 import { type NextRequest, NextResponse } from "next/server";
 
 /**
+ * Returns the status of the api, 200 if it is online
  *
- * @param _request
- * @returns
+ * @param _request - The client request
+ * @returns The status of the API
  */
 const healthCheck = async (
     _request: NextRequest,

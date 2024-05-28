@@ -6,9 +6,11 @@ import { metadataConstants } from "@/common/constants/components/metadataConstan
 import { Dashboard } from "@/modules/Dashboard/Dashboard";
 
 /**
+ * The /project page
  *
- * @param param0
- * @returns
+ * @param _parameters - Parameters passed into the page via [] notation in paths
+ * @param _searchParameters - Parameters passed into the page via query string (searching)
+ * @returns The /project page
  */
 const Page = ({
     params: _parameters,

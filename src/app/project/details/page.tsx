@@ -6,9 +6,11 @@ import { metadataConstants } from "@/common/constants/components/metadataConstan
 import { Details } from "@/modules/Details/Details";
 
 /**
+ * The /project/details page
  *
- * @param param0
- * @returns
+ * @param _parameters - Parameters passed into the page via [] notation in paths
+ * @param _searchParameters - Parameters passed into the page via query string (searching)
+ * @returns The /project/details page
  */
 const Page = ({
     params: _parameters,

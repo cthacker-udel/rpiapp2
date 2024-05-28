@@ -20,8 +20,10 @@ type UseTemperatureHookParameters = Partial<UndefinedInitialDataOptions> &
     UseTemperatureParameters;
 
 /**
+ * Gets all the temperature data from the database with respect to the pi id passed in
  *
- * @returns
+ * @param selectedId - The pi id selected by the user
+ * @returns The found temperature data belonging to the pi selected
  */
 const getAllTemperatureData = async ({
     selectedId,
@@ -42,9 +44,10 @@ const getAllTemperatureData = async ({
 };
 
 /**
+ * Utility hook fro fetching the temperature data from the database
  *
- * @param _params
- * @returns
+ * @param _parameters - The hook parameters (use query options) that the user can specify when calling this hook
+ * @returns The found temperature data
  */
 export const useTemperature = (
     _parameters?: UseTemperatureHookParameters,

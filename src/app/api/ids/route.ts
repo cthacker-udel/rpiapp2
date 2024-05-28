@@ -10,7 +10,7 @@ import { xorString } from "@/common/helpers/components/xorString";
  * Fetches all temperatures from the database
  *
  * @param request - The client request
- * @returns
+ * @returns All the ids of the Pis available
  */
 const getAllPiIds = async (
     _request: NextRequest,

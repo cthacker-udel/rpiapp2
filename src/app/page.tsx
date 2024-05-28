@@ -6,9 +6,11 @@ import { metadataConstants } from "@/common/constants/components/metadataConstan
 import { Landing } from "@/modules/Landing/Landing";
 
 /**
+ * The landing page, the root page
  *
- * @param param0
- * @returns
+ * @param _parameters - Parameters passed into the page via [] notation in paths
+ * @param _searchParameters - Parameters passed into the page via query string (searching)
+ * @returns The Landing page
  */
 const Page = ({
     params: _parameters,

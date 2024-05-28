@@ -1,5 +1,8 @@
 import type { Id } from "../id/Id";
 
+/**
+ * Represents a singular temperature datum in the database
+ */
 export type Temperature = {
     /** PK */
     id: string;

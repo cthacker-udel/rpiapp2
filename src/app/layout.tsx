@@ -2,7 +2,6 @@
 import "./globals.css";
 import "tailwindcss/tailwind.css";
 
-import Script from "next/script";
 import React from "react";
 
 import {
@@ -16,9 +15,10 @@ import { ThemeProvider } from "@/@lib/themeProviderClient";
 import { QueryProvider } from "@/providers/query/QueryProvider";
 
 /**
+ * The root layout, the "wrapper" that encompasses every page rendered in the project
  *
- * @param param0
- * @returns
+ * @param children - The components that this layout "wraps"
+ * @returns The root layout component
  */
 const RootLayout = ({
     children,
@@ -26,9 +26,6 @@ const RootLayout = ({
     children: React.ReactNode;
 }>): JSX.Element => (
     <html lang="en">
-        <head>
-            <Script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" />
-        </head>
         <body
             className={`${jetBrains.variable} ${quickSand.variable} ${bebasNeue.variable} ${jetBrains.variable} ${poppins.className} ${poppins.variable} ${sourceCodePro.variable} relative h-screen w-screen`}
         >

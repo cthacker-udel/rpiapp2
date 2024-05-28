@@ -10,7 +10,7 @@ import { xorString } from "@/common/helpers/components/xorString";
  * Fetches all temperatures from the database
  *
  * @param request - The client request
- * @returns
+ * @returns The found temperatures pertaining to the pi specified
  */
 const getAllTemperatures = async (
     request: NextRequest,
@@ -22,6 +22,11 @@ const getAllTemperatures = async (
     }
 
     const truePiId = xorString(pi_id, process.env.ID_XOR_KEY ?? "");
+
+    /** Check if Pi Id belongs in the database */
+    await prisma.ids.findUniqueOrThrow({
+        where: { pi_id: truePiId },
+    });
 
     const fetchedTemperatures = await prisma.temperatures.findMany({
         select: {

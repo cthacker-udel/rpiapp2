@@ -1,5 +1,8 @@
 import type { Temperature } from "../temperature/Temperature";
 
+/**
+ * Represents a single entry of a raspberry pi's metadata in the database
+ */
 export type Id = {
     /** PK */
     id: string;

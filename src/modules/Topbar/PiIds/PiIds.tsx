@@ -66,6 +66,9 @@ export const PiIds = (): JSX.Element => {
 
     return (
         <ul className="menu items-center rounded-box gap-3">
+            {piIds.length === 0 && (
+                <div className="text-sm">{"No Pavers Available"}</div>
+            )}
             {piIds.map((eachId) => (
                 <li
                     className="border rounded-btn flex items-center w-full"
