@@ -46,7 +46,7 @@ export const Details = (): JSX.Element => (
         </div>
         <div className="w-2/3 h-2/3 flex flex-col gap-10 lg:hidden">
             <article className="prose">
-                <h1 className="text-xl">
+                <h1 className="text-wrap md:text-nowrap text-xl">
                     {"Project Background and Acknowledgements"}
                 </h1>
                 <p className="text-sm">
@@ -56,7 +56,7 @@ export const Details = (): JSX.Element => (
                 </p>
             </article>
             <article className="prose">
-                <h1 className="text-nowrap text-xl">
+                <h1 className="text-wrap md:text-nowrap text-xl">
                     {"What is the sensor reading?"}
                 </h1>
                 <p className="text-sm">
@@ -67,7 +67,7 @@ export const Details = (): JSX.Element => (
             </article>
 
             <article className="prose">
-                <h1 className="text-nowrap text-xl">
+                <h1 className="text-wrap md:text-nowrap text-xl">
                     {"Why are we monitoring the pavers?"}
                 </h1>
                 <p className="text-sm">

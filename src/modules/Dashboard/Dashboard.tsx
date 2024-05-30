@@ -141,10 +141,7 @@ export const Dashboard = (): JSX.Element => {
     return (
         <div className="flex-grow flex flex-col justify-center items-center relative">
             {selectedId !== undefined && (
-                <div
-                    className="text-xl font-bold flex flex-row justify-center"
-                    style={{ width: "1500px" }}
-                >
+                <div className="text-xl font-bold flex flex-row justify-center w-full">
                     {selectedId.name}
                 </div>
             )}

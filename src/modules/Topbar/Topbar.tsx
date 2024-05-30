@@ -159,7 +159,7 @@ export const Topbar = (): JSX.Element => {
             </div>{" "}
             {/* @ts-expect-error -- ignore error for this */}
             <Drawer
-                className="p-4 w-2/3 lg:w-full"
+                className="p-4 w-2/3 lg:w-full justify-start flex-col"
                 open={showPiDrawer}
                 overlay={false}
                 placement="right"
