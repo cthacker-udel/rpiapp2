@@ -110,6 +110,7 @@ export const Dashboard = (): JSX.Element => {
             const sessionId = sessionStorage.getItem(
                 sessionStorageKeys.DASHBOARD_SELECTED_PI_ID,
             );
+
             if (sessionId !== null) {
                 setSelectedId(JSON.parse(sessionId) as Id);
             }

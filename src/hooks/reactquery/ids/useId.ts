@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-operators -- disabled */
 /* eslint-disable require-await -- disabled */
 import {
     type QueryObserverResult,
@@ -37,6 +38,9 @@ const useId: CallbackType = (): UseQueryResult<Id[]> =>
     useQuery<Id[], Error, Id[], string[]>({
         queryFn: async () => fetchPiIds(),
         queryKey: ["pi_ids"],
+        retry: 3,
+        retryDelay: (attempt) =>
+            Math.min(attempt > 1 ? 2 ** attempt * 1000 : 1000, 30_000),
         staleTime: 30_000,
     });
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-operators -- disabled */
 /* eslint-disable @typescript-eslint/indent -- disabled */
 /* eslint-disable require-await -- disabled */
 
@@ -58,4 +59,7 @@ export const useTemperature = (
         queryFn: async () =>
             getAllTemperatureData({ selectedId: _parameters?.selectedId }),
         queryKey: ["temperature_data", JSON.stringify(_parameters?.selectedId)],
+        retry: 3,
+        retryDelay: (attempt) =>
+            Math.min(attempt > 1 ? 2 ** attempt * 1000 : 1000, 30_000),
     });
