@@ -59,7 +59,7 @@ export class ClientSideApi {
      * Constructs the base url using the environment base url + api/ on the end
      */
     public constructor() {
-        ClientSideApi.BASE_URL = `${process.env.NODE_ENV === "production" ? "https://" : "http://"}${process.env.NEXT_PUBLIC_CLIENT_BASE_URL}/api/`;
+        ClientSideApi.BASE_URL = getBaseUrl();
     }
 
     /**
@@ -82,6 +82,7 @@ export class ClientSideApi {
                   .map((eachEntry) => `${eachEntry[0]}=${eachEntry[1]}`)
                   .join("&")}`
             : "";
+
         const getRequestResult = await fetch(
             `${this.BASE_URL}${endpoint}${queryString}`,
             {
