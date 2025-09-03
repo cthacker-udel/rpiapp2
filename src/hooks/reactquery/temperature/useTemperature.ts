@@ -1,5 +1,4 @@
 /* eslint-disable no-mixed-operators -- disabled */
-/* eslint-disable @typescript-eslint/indent -- disabled */
 /* eslint-disable require-await -- disabled */
 
 import {

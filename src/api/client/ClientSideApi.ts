@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-extraneous-class -- disabled */
-/* eslint-disable @typescript-eslint/indent -- disabled */
 
 import type { NextFetchRequestConfig } from "@/@types/api/fetch";
 import { corsHeaders } from "@/common/constants/api/corsHeaders";
@@ -10,6 +9,13 @@ const FILE_HEADER = "content-disposition";
 
 /** The include argument when we want to download the file (or mark it as an attachment) */
 const FILE_HEADER_INCLUDE = "attachment";
+
+/**
+ * The type definition of the value in the query parameter payload
+ */
+type QueryParameterValue = number | string | boolean | undefined;
+
+type BodyType = number | string | undefined;
 
 /**
  * Configuration for client-side fetch calls
@@ -53,14 +59,7 @@ export class ClientSideApi {
     /**
      * The base url of this class, used to construct the endpoints efficiently
      */
-    public static BASE_URL: string | undefined = getBaseUrl();
-
-    /**
-     * Constructs the base url using the environment base url + api/ on the end
-     */
-    public constructor() {
-        ClientSideApi.BASE_URL = getBaseUrl();
-    }
+    public static readonly BASE_URL: string | undefined = getBaseUrl();
 
     /**
      * Sends a get request to the serverless api to then send the request to the server
@@ -73,7 +72,7 @@ export class ClientSideApi {
     public static async get<T = unknown>(
         endpoint: string,
         queryParameters?: {
-            [key: string]: number | string | boolean | undefined;
+            [key: string]: QueryParameterValue;
         },
         config?: ClientSideApiConfig,
     ): Promise<T> {
@@ -125,12 +124,12 @@ export class ClientSideApi {
      */
     public static async post<
         T = unknown,
-        K = { [key: string]: number | string | undefined } | FormData,
+        K = { [key: string]: BodyType } | FormData,
     >(
         endpoint: string,
         body?: K,
         queryParameters?: {
-            [key: string]: number | string | boolean | undefined;
+            [key: string]: QueryParameterValue;
         },
         config?: ClientSideApiConfig,
     ): Promise<T> {

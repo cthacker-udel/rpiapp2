@@ -61,7 +61,7 @@ export const Dashboard = (): JSX.Element => {
         const mappedEvent = event as CustomEvent<SelectedPiEvent>;
 
         const { detail } = mappedEvent;
-        if (detail !== undefined) {
+        if ((detail as SelectedPiEvent | undefined) !== undefined) {
             const { id } = detail;
             setSelectedId(id);
             sessionStorage.setItem(
@@ -102,7 +102,7 @@ export const Dashboard = (): JSX.Element => {
 
     /** Fires when the `processSelectedIdEvent` event is fired */
     React.useEffect(() => {
-        if (document !== undefined) {
+        if ((document as Document | undefined) !== undefined) {
             document.addEventListener(
                 Events.SELECTED_PI,
                 processSelectedIdEvent,

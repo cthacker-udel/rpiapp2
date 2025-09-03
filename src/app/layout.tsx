@@ -1,6 +1,6 @@
 /* eslint-disable node/no-unpublished-import -- disabled */
 import "./globals.css";
-import "tailwindcss/tailwind.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import React from "react";
 
@@ -22,9 +22,7 @@ import { QueryProvider } from "@/providers/query/QueryProvider";
  */
 const RootLayout = ({
     children,
-}: Readonly<{
-    children: React.ReactNode;
-}>): JSX.Element => (
+}: Readonly<{ children: React.ReactNode }>): JSX.Element => (
     <html lang="en">
         <body
             className={`${jetBrains.variable} ${quickSand.variable} ${bebasNeue.variable} ${jetBrains.variable} ${poppins.className} ${poppins.variable} ${sourceCodePro.variable} relative h-screen w-screen`}

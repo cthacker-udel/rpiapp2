@@ -14,7 +14,7 @@ export const emitEvent = <T>(eventName: string, detailPayload?: T): void => {
         detail: detailPayload,
     });
 
-    if (document !== undefined) {
+    if ((document as Document | undefined) !== undefined) {
         const didDispatch = document.dispatchEvent(event);
         if (!didDispatch) {
             throw new Error(`Error dispatching the event ${eventName}`);

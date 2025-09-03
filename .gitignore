@@ -35,3 +35,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+node_modules
+*storybook.log
+storybook-static
+*.tgz
+docs.zip
+src/@lib/generated
+leveldb/*
+database.db
+dist/

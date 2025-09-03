@@ -1,6 +1,9 @@
+/* eslint-disable sonarjs/mouse-events-a11y -- disabled */
+/* eslint-disable sonarjs/anchor-is-valid -- disabled */
 /* eslint-disable jsx-a11y/click-events-have-key-events -- disabled */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions -- disabled */
 /* eslint-disable jsx-a11y/anchor-is-valid -- disabled */
+
 import React from "react";
 
 import type { Id } from "@/@types/api/id/Id";
@@ -45,7 +48,7 @@ export const PiIds = (): JSX.Element => {
      * the selected paver to the one already selecteds
      */
     React.useEffect(() => {
-        if (document !== undefined) {
+        if ((document as Document | undefined) !== undefined) {
             const sessionSelectedName = sessionStorage.getItem(
                 sessionStorageKeys.DROPDOWN_SELECTED_PI_NAME,
             );

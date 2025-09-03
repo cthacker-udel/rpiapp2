@@ -35,11 +35,7 @@ export const Topbar = (): JSX.Element => {
      * Fires when the pathname changes, resets the drawer to hide (when the user is changing pages, etc)s
      */
     React.useEffect(() => {
-        if (
-            pathName !== undefined &&
-            pathName.length > 0 &&
-            pathName !== "/project"
-        ) {
+        if (pathName.length > 0 && pathName !== "/project") {
             setShowPiDrawer(false);
         }
     }, [pathName]);
