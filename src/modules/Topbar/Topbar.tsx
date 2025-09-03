@@ -19,7 +19,7 @@ const BUTTON_DISABLED_STYLE = "btn-neutral btn-disabled";
  *
  * @returns The icon of UD, and the buttons used for navigating throughout the project
  */
-export const Topbar = (): JSX.Element => {
+export const Topbar = (): React.JSX.Element => {
     /** Grabs pathname (used for "currently selected") */
     const pathName = usePathname();
 
@@ -41,10 +41,10 @@ export const Topbar = (): JSX.Element => {
     }, [pathName]);
 
     return (
-        <div className="navbar bg-base-100">
+        <div className="bg-base-100 navbar">
             <div className="avatar">
                 <div
-                    className="w-14 rounded-full border border-black border-opacity-50 p-1 pl-2 hover:bg-gray-300 transition-all"
+                    className="hover:bg-gray-300 p-1 pl-2 border border-black border-opacity-50 rounded-full w-14 transition-all"
                     title="University of Delaware"
                 >
                     <a
@@ -62,8 +62,8 @@ export const Topbar = (): JSX.Element => {
                     </a>
                 </div>
             </div>
-            <div className="navbar-start hidden lg:flex">
-                <Link className="btn ml-3 btn-sm" href="/" title="Home Page">
+            <div className="hidden lg:flex navbar-start">
+                <Link className="ml-3 btn btn-sm" href="/" title="Home Page">
                     <IoHome />
                     {"Home"}
                 </Link>
@@ -96,12 +96,12 @@ export const Topbar = (): JSX.Element => {
             </div>
             <div className="dropdown">
                 <div
-                    className="btn btn-ghost lg:hidden ml-3"
+                    className="lg:hidden ml-3 btn btn-ghost"
                     role="button"
                     tabIndex={0}
                 >
                     <svg
-                        className="h-5 w-5"
+                        className="w-5 h-5"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -116,11 +116,11 @@ export const Topbar = (): JSX.Element => {
                     </svg>
                 </div>
                 <ul
-                    className="menu menu-sm dropdown-content mt-3 z-[3] p-2 shadow bg-base-100 rounded-box w-fit gap-2"
+                    className="z-[3] gap-2 bg-base-100 shadow mt-3 p-2 rounded-box w-fit menu menu-sm dropdown-content"
                     tabIndex={0}
                 >
                     <li>
-                        <Link className="btn ml-3 btn-sm w-fit !m-0" href="/">
+                        <Link className="!m-0 ml-3 w-fit btn btn-sm" href="/">
                             <IoHome />
                         </Link>
                     </li>
@@ -155,7 +155,7 @@ export const Topbar = (): JSX.Element => {
             </div>{" "}
             {/* @ts-expect-error -- ignore error for this */}
             <Drawer
-                className="p-4 w-2/3 lg:w-full justify-start flex-col"
+                className="flex-col justify-start p-4 w-2/3 lg:w-full"
                 open={showPiDrawer}
                 overlay={false}
                 placement="right"

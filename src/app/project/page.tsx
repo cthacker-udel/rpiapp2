@@ -15,7 +15,7 @@ import { Dashboard } from "@/modules/Dashboard/Dashboard";
 const Page = ({
     params: _parameters,
     searchParams: _searchParameters,
-}: PageProperties): JSX.Element => <Dashboard />;
+}: PageProperties): React.JSX.Element => <Dashboard />;
 
 const metadata: Metadata = {
     ...metadataConstants,

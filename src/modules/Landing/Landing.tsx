@@ -1,4 +1,10 @@
+/**
+ * @file Represents the "landing" page which is the initial page that the user reaches when accessing the website.
+ */
+
 "use client";
+
+/* eslint-disable more/no-hardcoded-configuration-data -- fine for this. */
 
 import Image from "next/image";
 import Link from "next/link";
@@ -85,21 +91,20 @@ const IMAGES: ImagePayload[] = [
 ];
 
 /**
- * The initial landing page the user sees when initially "landing" on this website
- *
- * @returns The landing page
+ * The initial landing page the user sees when initially "landing" on this website.
+ * @returns The landing page.
  */
-export const Landing = (): JSX.Element => (
-    <div className="w-full h-full flex flex-col justify-center items-center gap-5 relative">
-        <div className="animate-backInDown flex flex-col gap-8">
+export const Landing = (): React.JSX.Element => (
+    <div className="relative flex flex-col justify-center items-center gap-5 w-full h-full">
+        <div className="flex flex-col gap-8 animate-backInDown">
             <div className="text-xl lg:text-4xl text-center">
                 {"Recycled Waste in Sustainable Concrete Pavers"}
             </div>
             <div className="flex flex-row justify-center w-full">
-                <span className="!animate-delay-1000 animate-fadeIn w-2/3">
+                <span className="w-2/3 !animate-delay-1000 animate-fadeIn">
                     <Link href="project">
                         <button
-                            className="btn btn-neutral hover:animate-rubberBand w-full"
+                            className="w-full hover:animate-rubberBand btn btn-neutral"
                             type="button"
                         >
                             {"Go To Project!"}
@@ -109,7 +114,7 @@ export const Landing = (): JSX.Element => (
             </div>
         </div>
         <div
-            className="flex flex-col lg:flex-row items-center gap-4 p-3 max-h-full rounded-btn mt-28 absolute top-2/4 lg:max-h-32 animate-fadeIn animate-delay-2s"
+            className="top-2/4 absolute flex lg:flex-row flex-col items-center gap-4 mt-28 p-3 rounded-btn max-h-full lg:max-h-32 animate-delay-2s animate-fadeIn"
             id="sponsor_container"
         >
             {...IMAGES.map((eachImage, index) => (

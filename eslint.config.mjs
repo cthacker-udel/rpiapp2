@@ -43,7 +43,6 @@ import reactPerf from "eslint-plugin-react-perf";
 import reactRefresh from "eslint-plugin-react-refresh";
 import reactWebApi from "eslint-plugin-react-web-api";
 import reactX from "eslint-plugin-react-x";
-import storyBook from "eslint-plugin-storybook";
 import ssrFriendly from "eslint-plugin-ssr-friendly";
 import reactHookForm from "eslint-plugin-react-hook-form";
 import html from "@html-eslint/eslint-plugin";
@@ -98,7 +97,6 @@ export default defineConfig([
     reactRefresh.configs.recommended,
     reactWebApi.configs.recommended,
     reactX.configs.recommended,
-    storyBook.configs["flat/recommended"],
     depend.configs["flat/recommended"],
     unicorn.configs.recommended,
     {

@@ -19,7 +19,7 @@ import { LdsLoader } from "@/modules/Loaders/LdsLoader";
  *
  * @returns The dropdown of the paver names to select
  */
-export const PiIds = (): JSX.Element => {
+export const PiIds = (): React.JSX.Element => {
     /** The name of the selected pi, purely for recognizing what pi is "currently selected" */
     const [selectedName, setSelectedName] = React.useState<string>();
 
@@ -68,13 +68,13 @@ export const PiIds = (): JSX.Element => {
     }
 
     return (
-        <ul className="menu items-center rounded-box gap-3">
+        <ul className="items-center gap-3 rounded-box menu">
             {piIds.length === 0 && (
                 <div className="text-sm">{"No Pavers Available"}</div>
             )}
             {piIds.map((eachId) => (
                 <li
-                    className="border rounded-btn flex items-center w-full"
+                    className="flex items-center border rounded-btn w-full"
                     key={eachId.id}
                     onClick={emitChosenPi(eachId)}
                 >

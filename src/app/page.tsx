@@ -15,7 +15,7 @@ import { Landing } from "@/modules/Landing/Landing";
 const Page = ({
     params: _parameters,
     searchParams: _searchParameters,
-}: PageProperties): JSX.Element => <Landing />;
+}: PageProperties): React.JSX.Element => <Landing />;
 
 const metadata: Metadata = {
     ...metadataConstants,

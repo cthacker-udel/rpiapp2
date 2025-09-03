@@ -8,8 +8,8 @@ import { Topbar } from "@/modules/Topbar/Topbar";
  * @param children - The components that this layout "wraps"
  * @returns The /project layout component
  */
-const Layout = ({ children }: React.PropsWithChildren): JSX.Element => (
-    <div className="h-full w-full flex flex-col">
+const Layout = ({ children }: React.PropsWithChildren): React.JSX.Element => (
+    <div className="flex flex-col w-full h-full">
         <Topbar />
         {children}
     </div>

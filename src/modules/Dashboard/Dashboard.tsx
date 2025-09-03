@@ -1,3 +1,9 @@
+/**
+ * @file Represents the inner dashboard of the application.
+ */
+
+/* eslint-disable barrel-files/avoid-importing-barrel-files -- documentation states decoupled components. */
+
 "use client";
 import dayjs from "dayjs";
 import React from "react";
@@ -22,40 +28,38 @@ import { useTemperature } from "@/hooks/reactquery/temperature/useTemperature";
 import { LdsLoader } from "../Loaders/LdsLoader";
 
 /**
- * Displays the graphical representation of the data coming from the selected paver
- *
- * @returns The main page for the project, houses the graph of data, etc
+ * Displays the graphical representation of the data coming from the selected paver.
+ * @returns The main page for the project, houses the graph of data, etc.
  */
-export const Dashboard = (): JSX.Element => {
-    /** The selected paver */
+export const Dashboard = (): React.JSX.Element => {
+    /** The selected paver. */
     const [selectedId, setSelectedId] = React.useState<Id | undefined>(
         undefined,
     );
 
-    /** Fetches the temperature data of the paver selected */
+    /** Fetches the temperature data of the paver selected. */
     const {
         data: temperatureData,
-        isLoading,
         isFetching,
+        isLoading,
         status,
     } = useTemperature({ selectedId });
 
-    /** Used for graph, formats the date (x) labels */
+    /** Used for graph, formats the date (x) labels. */
     const formatDate = React.useCallback(
         (date: Date): string => dayjs(date).format("MM/DD/YYYY hh:mm"),
         [],
     );
 
-    /** Formats the tooltip header */
+    /** Formats the tooltip header. */
     const tooltipLabelFormatter = React.useCallback(
         (date: Date) => dayjs(date).format("MM/DD/YYYY hh:mm"),
         [],
     );
 
     /**
-     * Processes the event fired from the TopBar component
-     *
-     * @param event - The event fired from the TopBar component
+     * Processes the event fired from the TopBar component.
+     * @param event - The event fired from the TopBar component.
      */
     const processSelectedIdEvent = React.useCallback((event: Event) => {
         const mappedEvent = event as CustomEvent<SelectedPiEvent>;
@@ -72,22 +76,21 @@ export const Dashboard = (): JSX.Element => {
     }, []);
 
     /**
-     * Formats the values displayed in the tooltip
-     *
-     * @param value - The actual value being displayed
-     * @param name - The key (title) of what is going to be displayed
+     * Formats the values displayed in the tooltip.
+     * @param value - The actual value being displayed.
+     * @param name - The key (title) of what is going to be displayed.
      */
     const tooltipValueFormatter = React.useCallback(
         (value: number, name: string) => {
             switch (name) {
-                case "kelvin": {
-                    return `${value} °K`;
+                case "celsius": {
+                    return `${value} °C`;
                 }
                 case "fahrenheit": {
                     return `${value} °F`;
                 }
-                case "celsius": {
-                    return `${value} °C`;
+                case "kelvin": {
+                    return `${value} °K`;
                 }
                 default: {
                     return `${value}`;
@@ -97,10 +100,10 @@ export const Dashboard = (): JSX.Element => {
         [],
     );
 
-    /** Converts a string to degrees */
+    /** Converts a string to degrees. */
     const degToString = React.useCallback((value: number) => `${value}°`, []);
 
-    /** Fires when the `processSelectedIdEvent` event is fired */
+    /** Fires when the `processSelectedIdEvent` event is fired. */
     React.useEffect(() => {
         if ((document as Document | undefined) !== undefined) {
             document.addEventListener(
@@ -124,14 +127,14 @@ export const Dashboard = (): JSX.Element => {
         };
     }, [processSelectedIdEvent]);
 
-    /** While the temperatures are loading, displays a loading icon with text */
+    /** While the temperatures are loading, displays a loading icon with text. */
     if (
         selectedId === undefined &&
         (isLoading || isFetching || status !== "success")
     ) {
         return (
-            <div className="flex-grow flex flex-col justify-center items-center gap-3">
-                <span className="animate-pulse animate-infinite text-lg">
+            <div className="flex flex-col flex-grow justify-center items-center gap-3">
+                <span className="text-lg animate-infinite animate-pulse">
                     {"Loading Temperatures..."}
                 </span>
                 <LdsLoader />
@@ -140,19 +143,19 @@ export const Dashboard = (): JSX.Element => {
     }
 
     return (
-        <div className="flex-grow flex flex-col justify-center items-center relative">
+        <div className="relative flex flex-col flex-grow justify-center items-center">
             {selectedId !== undefined && (
-                <div className="text-xl font-bold flex flex-row justify-center w-full">
+                <div className="flex flex-row justify-center w-full font-bold text-xl">
                     {selectedId.name}
                 </div>
             )}
             {selectedId === undefined && (
-                <div className="absolute w-full h-full flex flex-col justify-center items-center text-2xl font-bold z-[2] bg-black bg-opacity-50 pointer-events-none">
-                    <article className="prose text-white pointer-events-auto text-center">
+                <div className="z-[2] absolute flex flex-col justify-center items-center bg-black bg-opacity-50 w-full h-full font-bold text-2xl pointer-events-none">
+                    <article className="text-white text-center pointer-events-auto prose">
                         <h1 className="text-white animate-jackInTheBox">
                             {"How to begin"}
                         </h1>
-                        <p className="p-3 lg:p-0 animate-fadeIn animate-delay-1000">
+                        <p className="p-3 lg:p-0 animate-delay-1000 animate-fadeIn">
                             {
                                 "Click the 'Select Pi' button above, this will show a drawer on the right-hand side of your screen with the available pavers to view data about, click on one of the pavers to begin seeing data about the selected paver."
                             }

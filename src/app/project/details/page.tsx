@@ -15,7 +15,7 @@ import { Details } from "@/modules/Details/Details";
 const Page = ({
     params: _parameters,
     searchParams: _searchParameters,
-}: PageProperties): JSX.Element => <Details />;
+}: PageProperties): React.JSX.Element => <Details />;
 
 const metadata: Metadata = {
     ...metadataConstants,

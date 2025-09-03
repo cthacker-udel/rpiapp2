@@ -22,7 +22,7 @@ import { QueryProvider } from "@/providers/query/QueryProvider";
  */
 const RootLayout = ({
     children,
-}: Readonly<{ children: React.ReactNode }>): JSX.Element => (
+}: Readonly<{ children: React.ReactNode }>): React.JSX.Element => (
     <html lang="en">
         <body
             className={`${jetBrains.variable} ${quickSand.variable} ${bebasNeue.variable} ${jetBrains.variable} ${poppins.className} ${poppins.variable} ${sourceCodePro.variable} relative h-screen w-screen`}

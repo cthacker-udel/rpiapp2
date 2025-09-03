@@ -27,7 +27,7 @@ export default {
         "before:git:init": "npm run docs",
         "before:init": "npx tsup",
     },
-    npm: { publish: true },
+    npm: { publish: false },
     plugins: {
         "@release-it/conventional-changelog": {
             infile: "CHANGELOG.md",

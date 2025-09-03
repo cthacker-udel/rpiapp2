@@ -23,7 +23,7 @@ type QueryProviderProperties = {
  */
 export const QueryProvider = ({
     children,
-}: QueryProviderProperties): JSX.Element => {
+}: QueryProviderProperties): React.JSX.Element => {
     const [queryClient] = React.useState(
         () =>
             new QueryClient({
