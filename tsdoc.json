@@ -1,15 +1,35 @@
 {
     "$schema": "https://developer.microsoft.com/json-schemas/tsdoc/v0/tsdoc.schema.json",
     "tagDefinitions": [
-        { "tagName": "@since", "syntaxKind": "block", "allowMultiple": false },
-        { "tagName": "@author", "syntaxKind": "block", "allowMultiple": true },
-        { "tagName": "@TODO", "syntaxKind": "block", "allowMultiple": true },
-        { "tagName": "@file", "syntaxKind": "block", "allowMultiple": false },
+        {
+            "tagName": "@since",
+            "syntaxKind": "block",
+            "allowMultiple": false
+        },
+        {
+            "tagName": "@author",
+            "syntaxKind": "block",
+            "allowMultiple": true
+        },
+        {
+            "tagName": "@TODO",
+            "syntaxKind": "block",
+            "allowMultiple": true
+        },
+        {
+            "tagName": "@file",
+            "syntaxKind": "block",
+            "allowMultiple": false
+        },
         {
             "tagName": "@template",
             "syntaxKind": "block",
             "allowMultiple": true
         },
-        { "tagName": "@source", "syntaxKind": "block", "allowMultiple": false }
+        {
+            "tagName": "@source",
+            "syntaxKind": "block",
+            "allowMultiple": false
+        }
     ]
 }

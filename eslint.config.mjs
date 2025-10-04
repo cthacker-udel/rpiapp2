@@ -70,6 +70,8 @@ export default defineConfig([
         "src/assets/test/Playground.tsx",
         "*.stories.tsx",
         "src/@lib/generated/**/*",
+        "vite.config.ts",
+        "postcss.config.mjs",
     ]),
     problems,
     sonarjs.configs.recommended,
@@ -146,11 +148,11 @@ export default defineConfig([
             },
 
             parser: tsParser,
-            ecmaVersion: 2018,
+            ecmaVersion: "latest",
             sourceType: "module",
 
             parserOptions: {
-                project: path.join(__dirname, "tsconfig.json"),
+                project: ["./tsconfig.app.json", "./tsconfig.node.json"],
                 tsconfigRootDir: __dirname,
             },
         },
