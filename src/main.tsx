@@ -11,16 +11,13 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 
 import App from "./App.tsx";
-import { QueryProvider } from "./modules/QueryProvider.tsx";
 
 if (typeof document !== "undefined") {
     const foundRootElement = document.querySelector("#root");
     if (!isNullish(foundRootElement)) {
         createRoot(foundRootElement).render(
             <React.StrictMode>
-                <QueryProvider>
-                    <App />
-                </QueryProvider>
+                <App />
             </React.StrictMode>,
         );
     }
