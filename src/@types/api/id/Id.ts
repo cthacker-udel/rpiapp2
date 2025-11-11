@@ -15,10 +15,10 @@ export type Id = {
     id: bigint;
 
     /** The name of the pi (used externally). */
-    name: string | null;
+    name: null | string;
 
     /** Id of the pi (used internally). */
-    pi_id: string | null;
+    pi_id: null | string;
 
     /** Temperatures associated with the Pi Id. */
     temperatures?: Temperature[];

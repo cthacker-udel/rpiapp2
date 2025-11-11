@@ -17,9 +17,12 @@ export type Temperature = {
     /** PK. */
     id: bigint;
 
+    /**
+     * Defines the ids linked to the temperature entry.
+     */
     ids?: Id[];
 
-    /** Kelvin number. */
+    /** Kelvin representation of the temperature. */
     kelvin: number;
 
     /** Id denoting the pi (used internally). */

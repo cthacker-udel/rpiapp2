@@ -113,6 +113,13 @@ export const Dashboard = (): React.JSX.Element => {
         [],
     );
 
+    /** Converts a string to degrees. */
+    const degToString = React.useCallback((value: number) => `${value}°`, []);
+
+    /**
+     * Callback function for handling websocket messages.
+     * @param messageEvent - The event sent from the websocket server.
+     */
     const onWebsocketMessage = React.useCallback(
         (messageEvent: MessageEvent) => {
             const { data } = messageEvent;
@@ -134,6 +141,9 @@ export const Dashboard = (): React.JSX.Element => {
         [],
     );
 
+    /**
+     * Handler for mount event, which initializes the websocket instance to connect to the remote websocket url.
+     */
     React.useEffect(() => {
         if (!isNullish(document)) {
             const websocketUrl = import.meta.env.VITE_PUBLIC_WEBSOCKET_URL;
@@ -143,6 +153,9 @@ export const Dashboard = (): React.JSX.Element => {
         }
     }, []);
 
+    /**
+     * Handler for attaching the event listeners for the initialized websocket instance.
+     */
     React.useEffect(() => {
         if (
             !isNullish(websocketReference.current) &&
@@ -163,9 +176,6 @@ export const Dashboard = (): React.JSX.Element => {
             }
         };
     }, [onWebsocketMessage]);
-
-    /** Converts a string to degrees. */
-    const degToString = React.useCallback((value: number) => `${value}°`, []);
 
     return (
         <div className="flex flex-col items-center w-full h-full">
