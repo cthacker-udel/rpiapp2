@@ -23,35 +23,39 @@ import {
 } from "recharts";
 
 import type { Id } from "../@types/api/id/Id";
+import type { Temperature } from "../@types/api/temperature/Temperature";
+import type { IdMessagePayload } from "../@types/websocket/ids/IdMessagePayload";
+import type { TemperatureMessagePayload } from "../@types/websocket/temperature/TemperatureMessagePayload";
+import type { WebsocketResponse } from "../@types/websocket/WebsocketResponse";
+import { Events } from "../common/constants/Events";
 import { parseJson } from "../common/helpers/api/parseJson";
 import { stringifyJson } from "../common/helpers/api/stringifyJson";
-import { useId } from "../hooks/reactquery/ids/useId";
-import { useTemperature } from "../hooks/reactquery/temperature/useTemperature";
 
 /**
  * Displays the graphical representation of the data coming from the selected paver.
  * @returns The main page for the project, houses the graph of data, etc.
  */
 export const Dashboard = (): React.JSX.Element => {
+    /**
+     * Defines the reference to the current websocket reference.
+     */
+    const websocketReference = React.useRef<undefined | WebSocket>(undefined);
+
     /** The selected paver. */
     const [selectedId, setSelectedId] = React.useState<Id | undefined>(
         undefined,
     );
 
-    const {
-        data: piIds,
-        isFetching: isFetchingPiIds,
-        isLoading: isLoadingPiIds,
-        status: piIdsStatus,
-    } = useId();
+    /**
+     * The ids of the raspberry pi devices emitting temperature data to the remote database.
+     */
+    const [piIds, setPiIds] = React.useState<Id[]>();
 
-    /** Fetches the temperature data of the paver selected. */
-    const {
-        data: temperatureData,
-        isFetching,
-        isLoading,
-        status,
-    } = useTemperature({ selectedId });
+    /**
+     * The temperature data emitted from the remote raspberry pi devices.
+     */
+    const [temperatureData, setTemperatureData] =
+        React.useState<Temperature[]>();
 
     /** Used for graph, formats the date (x) labels. */
     const formatDate = React.useCallback(
@@ -109,24 +113,59 @@ export const Dashboard = (): React.JSX.Element => {
         [],
     );
 
+    const onWebsocketMessage = React.useCallback(
+        (messageEvent: MessageEvent) => {
+            const { data } = messageEvent;
+            if (!isEmpty(data)) {
+                const parsedData = parseJson<WebsocketResponse>(data);
+                if (!isNullish(parsedData)) {
+                    const { data: eventData, event } = parsedData;
+                    if (event === Events.WEBSOCKET.ID) {
+                        const { ids } = eventData as IdMessagePayload;
+                        setPiIds(ids);
+                    } else if (event === Events.WEBSOCKET.TEMPERATURE) {
+                        const { temperatures } =
+                            eventData as TemperatureMessagePayload;
+                        setTemperatureData(temperatures);
+                    }
+                }
+            }
+        },
+        [],
+    );
+
+    React.useEffect(() => {
+        if (!isNullish(document)) {
+            const websocketUrl = import.meta.env.VITE_PUBLIC_WEBSOCKET_URL;
+            if (!isEmpty(websocketUrl)) {
+                websocketReference.current = new WebSocket(websocketUrl);
+            }
+        }
+    }, []);
+
+    React.useEffect(() => {
+        if (
+            !isNullish(websocketReference.current) &&
+            websocketReference.current.readyState === WebSocket.OPEN
+        ) {
+            websocketReference.current.addEventListener(
+                "message",
+                onWebsocketMessage,
+            );
+        }
+
+        return (): void => {
+            if (!isNullish(document)) {
+                websocketReference.current?.removeEventListener(
+                    "message",
+                    onWebsocketMessage,
+                );
+            }
+        };
+    }, [onWebsocketMessage]);
+
     /** Converts a string to degrees. */
     const degToString = React.useCallback((value: number) => `${value}°`, []);
-
-    const pendingTemperatureData =
-        isLoading || isFetching || status !== "success";
-    const pendingPiIds =
-        isLoadingPiIds || isFetchingPiIds || piIdsStatus !== "success";
-
-    /** While the temperatures are loading, displays a loading icon with text. */
-    if (isEmpty(selectedId) && pendingTemperatureData && pendingPiIds) {
-        return (
-            <div className="flex flex-col flex-grow justify-center items-center gap-3">
-                <span className="text-lg animate-infinite animate-pulse">
-                    {"Loading Temperatures..."}
-                </span>
-            </div>
-        );
-    }
 
     return (
         <div className="flex flex-col items-center w-full h-full">
@@ -161,42 +200,52 @@ export const Dashboard = (): React.JSX.Element => {
                     ))}
                 </select>
 
-                <ResponsiveContainer height="90%" width="90%">
-                    <LineChart data={temperatureData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis
-                            dataKey="temperature_timestamp"
-                            tickFormatter={formatDate}
-                        />
-                        <YAxis tickFormatter={degToString} />
-                        <Tooltip
-                            formatter={tooltipValueFormatter}
-                            labelFormatter={tooltipLabelFormatter}
-                        />
-                        <Legend />
-                        <Line
-                            dataKey="fahrenheit"
-                            stroke="#8884d8"
-                            type="monotone"
-                        />
-                        <Line
-                            dataKey="celsius"
-                            stroke="#c9264e"
-                            type="monotone"
-                        />
-                        <Line
-                            dataKey="kelvin"
-                            stroke="#82ca9d"
-                            type="monotone"
-                        />
-                        <Brush
-                            dataKey="temperature_timestamp"
-                            height={30}
-                            stroke="#867835"
-                            tickFormatter={formatDate}
-                        />
-                    </LineChart>
-                </ResponsiveContainer>
+                {isEmpty(selectedId) ? (
+                    <div className="flex flex-col flex-grow justify-center items-center gap-3">
+                        <span className="text-2xl animate-infinite animate-pulse">
+                            {
+                                "Please select an ID of the raspberry pi device to display the temperature."
+                            }
+                        </span>
+                    </div>
+                ) : (
+                    <ResponsiveContainer height="90%" width="90%">
+                        <LineChart data={temperatureData}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis
+                                dataKey="temperature_timestamp"
+                                tickFormatter={formatDate}
+                            />
+                            <YAxis tickFormatter={degToString} />
+                            <Tooltip
+                                formatter={tooltipValueFormatter}
+                                labelFormatter={tooltipLabelFormatter}
+                            />
+                            <Legend />
+                            <Line
+                                dataKey="fahrenheit"
+                                stroke="#8884d8"
+                                type="monotone"
+                            />
+                            <Line
+                                dataKey="celsius"
+                                stroke="#c9264e"
+                                type="monotone"
+                            />
+                            <Line
+                                dataKey="kelvin"
+                                stroke="#82ca9d"
+                                type="monotone"
+                            />
+                            <Brush
+                                dataKey="temperature_timestamp"
+                                height={30}
+                                stroke="#867835"
+                                tickFormatter={formatDate}
+                            />
+                        </LineChart>
+                    </ResponsiveContainer>
+                )}
             </div>
         </div>
     );
