@@ -29,5 +29,5 @@ export type Temperature = {
     pi_id: string;
 
     /** Temperature timestamp (the date of recording). */
-    temperature_timestamp: Date;
+    created_at: Date;
 };
