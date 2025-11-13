@@ -9,6 +9,9 @@ COPY package.json .
 # install deps
 RUN npm i
 
+# globally install vite
+RUN npm i -g vite
+
 # copy all files to current pwd
 COPY . .
 
