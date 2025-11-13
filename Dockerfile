@@ -19,7 +19,7 @@ COPY . .
 RUN ["npm", "run", "build"]
 
 # expose port 8080
-EXPOSE 8080
+EXPOSE 80
 
 # run production level application
-CMD ["npm", "run", "preview"]
+ENTRYPOINT ["vite", "preview", "--port", "80"]
