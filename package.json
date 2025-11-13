@@ -22,7 +22,6 @@
         "radashi": "^12.7.0",
         "react": "^19.1.1",
         "react-dom": "^19.1.1",
-        "react-toastify": "^11.0.5",
         "recharts": "^3.4.1"
     },
     "devDependencies": {
@@ -87,7 +86,6 @@
         "eslint-plugin-write-good-comments": "^0.2.0",
         "eslint-plugin-xss": "^0.1.12",
         "globals": "^16.5.0",
-        "prisma": "^6.19.0",
         "tailwindcss": "^4.1.17",
         "tailwindcss-animated": "^2.0.0",
         "typescript": "^5.9.3",
