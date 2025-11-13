@@ -22,4 +22,4 @@ RUN ["npm", "run", "build"]
 EXPOSE 80
 
 # run production level application
-ENTRYPOINT ["vite", "preview", "--port", "80"]
+ENTRYPOINT ["vite", "preview", "--port", "80", "--host", "0.0.0.0"]
