@@ -145,13 +145,9 @@ export const Dashboard = (): React.JSX.Element => {
      * Handler for mount event, which initializes the websocket instance to connect to the remote websocket url.
      */
     React.useEffect(() => {
-        console.log("instantiating websocket");
         if (!isNullish(document)) {
-            console.log(import.meta.env);
             const websocketUrl = import.meta.env.VITE_PUBLIC_WEBSOCKET_URL;
-            console.log({ websocketUrl });
             if (!isEmpty(websocketUrl)) {
-                console.log("connecting to websocket at ", websocketUrl);
                 websocketReference.current = new WebSocket(websocketUrl);
             }
         }
