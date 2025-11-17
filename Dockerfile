@@ -15,6 +15,8 @@ RUN npm i -g vite
 # copy all files to current pwd
 COPY . .
 
+ARG VITE_PUBLIC_WEBSOCKET_URL
+
 # build production level application
 RUN ["npm", "run", "build"]
 
