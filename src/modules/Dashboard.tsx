@@ -148,6 +148,7 @@ export const Dashboard = (): React.JSX.Element => {
         console.log("instantiating websocket");
         if (!isNullish(document)) {
             const websocketUrl = import.meta.env.VITE_PUBLIC_WEBSOCKET_URL;
+            console.log({ websocketUrl });
             if (!isEmpty(websocketUrl)) {
                 console.log("connecting to websocket at ", websocketUrl);
                 websocketReference.current = new WebSocket(websocketUrl);
