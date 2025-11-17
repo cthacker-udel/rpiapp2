@@ -16,6 +16,7 @@ RUN npm i -g vite
 COPY . .
 
 ARG VITE_PUBLIC_WEBSOCKET_URL
+ENV VITE_PUBLIC_WEBSOCKET_URL=$VITE_PUBLIC_WEBSOCKET_URL
 
 # build production level application
 RUN ["npm", "run", "build"]
