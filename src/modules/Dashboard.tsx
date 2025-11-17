@@ -147,6 +147,7 @@ export const Dashboard = (): React.JSX.Element => {
     React.useEffect(() => {
         console.log("instantiating websocket");
         if (!isNullish(document)) {
+            console.log(import.meta.env);
             const websocketUrl = import.meta.env.VITE_PUBLIC_WEBSOCKET_URL;
             console.log({ websocketUrl });
             if (!isEmpty(websocketUrl)) {
