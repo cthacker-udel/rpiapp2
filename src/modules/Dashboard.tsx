@@ -129,21 +129,14 @@ export const Dashboard = (): React.JSX.Element => {
                         setPiIds(eventData as Id[]);
                     } else if (
                         type === Events.WEBSOCKET.TEMPERATURE &&
-                        !isNullish(selectedId) &&
                         !isEmpty(eventData)
                     ) {
-                        const filteredTemperatureData = (
-                            eventData as Temperature[]
-                        ).filter(
-                            (eachTemperatureDatum) =>
-                                eachTemperatureDatum.pi_id === selectedId.pi_id,
-                        );
-                        setTemperatureData(filteredTemperatureData);
+                        setTemperatureData(eventData as Temperature[]);
                     }
                 }
             }
         },
-        [selectedId],
+        [],
     );
 
     /**
@@ -222,7 +215,12 @@ export const Dashboard = (): React.JSX.Element => {
                     </div>
                 ) : (
                     <ResponsiveContainer height="90%" width="90%">
-                        <LineChart data={temperatureData}>
+                        <LineChart
+                            data={temperatureData?.filter(
+                                (eachDatum) =>
+                                    eachDatum.pi_id === selectedId?.pi_id,
+                            )}
+                        >
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis
                                 dataKey="created_at"
