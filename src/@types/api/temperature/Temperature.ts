@@ -11,6 +11,9 @@ export type Temperature = {
     /** Celsius reading. */
     celsius: number;
 
+    /** Temperature timestamp (the date of recording). */
+    created_at: Date;
+
     /** Fahrenheit number. */
     fahrenheit: number;
 
@@ -27,7 +30,4 @@ export type Temperature = {
 
     /** Id denoting the pi (used internally). */
     pi_id: string;
-
-    /** Temperature timestamp (the date of recording). */
-    created_at: Date;
 };

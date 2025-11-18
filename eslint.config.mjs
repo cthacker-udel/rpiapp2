@@ -92,7 +92,7 @@ export default defineConfig([
     pluginPromise.configs["flat/recommended"],
     reactCompiler.configs.recommended,
     reactDom.configs.recommended,
-    reactHooks.configs["recommended-latest"],
+    reactHooks.configs.flat["recommended-latest"],
     reactHooksExtra.configs.recommended,
     reactNamingConvention.configs.recommended,
     reactPerf.configs.flat.all,

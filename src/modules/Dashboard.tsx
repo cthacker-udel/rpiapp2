@@ -143,7 +143,7 @@ export const Dashboard = (): React.JSX.Element => {
                 }
             }
         },
-        [],
+        [selectedId],
     );
 
     /**
@@ -190,7 +190,7 @@ export const Dashboard = (): React.JSX.Element => {
                         />
                     </div>
                 </div>
-                <a className="!text-black text-xl pointer-events-none btn btn-ghost">
+                <a className="text-xl pointer-events-none btn btn-ghost">
                     {"Dr. Head's Raspberry Pi Project"}
                 </a>
             </div>
@@ -213,7 +213,7 @@ export const Dashboard = (): React.JSX.Element => {
                 </select>
 
                 {isEmpty(selectedId) ? (
-                    <div className="flex flex-col flex-grow justify-center items-center gap-3">
+                    <div className="flex flex-col justify-center items-center gap-3 grow">
                         <span className="text-2xl animate-infinite animate-pulse">
                             {
                                 "Please select an ID of the raspberry pi device to display the temperature."
