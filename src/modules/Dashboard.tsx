@@ -125,10 +125,10 @@ export const Dashboard = (): React.JSX.Element => {
             if (!isEmpty(data)) {
                 const parsedData = parseJson<WebsocketResponse>(data);
                 if (!isNullish(parsedData)) {
-                    const { data: eventData, event } = parsedData;
-                    if (event === Events.WEBSOCKET.ID) {
+                    const { data: eventData, type } = parsedData;
+                    if (type === Events.WEBSOCKET.ID) {
                         setPiIds(eventData as Id[]);
-                    } else if (event === Events.WEBSOCKET.TEMPERATURE) {
+                    } else if (type === Events.WEBSOCKET.TEMPERATURE) {
                         setTemperatureData(eventData as Temperature[]);
                     }
                 }

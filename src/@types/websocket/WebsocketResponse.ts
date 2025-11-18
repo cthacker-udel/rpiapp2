@@ -15,5 +15,5 @@ export type WebsocketResponse<Data = unknown> = {
     /**
      * Defines the event name for the data.
      */
-    event: string;
+    type: string;
 };
