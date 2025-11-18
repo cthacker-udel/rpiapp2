@@ -129,12 +129,9 @@ export const Dashboard = (): React.JSX.Element => {
                 if (!isNullish(parsedData)) {
                     const { data: eventData, event } = parsedData;
                     if (event === Events.WEBSOCKET.ID) {
-                        const { ids } = eventData as IdMessagePayload;
-                        setPiIds(ids);
+                        setPiIds(eventData as Id[]);
                     } else if (event === Events.WEBSOCKET.TEMPERATURE) {
-                        const { temperatures } =
-                            eventData as TemperatureMessagePayload;
-                        setTemperatureData(temperatures);
+                        setTemperatureData(eventData as Temperature[]);
                     }
                 }
             }
