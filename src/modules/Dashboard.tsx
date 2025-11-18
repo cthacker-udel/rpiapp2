@@ -127,8 +127,18 @@ export const Dashboard = (): React.JSX.Element => {
                     const { data: eventData, type } = parsedData;
                     if (type === Events.WEBSOCKET.ID) {
                         setPiIds(eventData as Id[]);
-                    } else if (type === Events.WEBSOCKET.TEMPERATURE) {
-                        setTemperatureData(eventData as Temperature[]);
+                    } else if (
+                        type === Events.WEBSOCKET.TEMPERATURE &&
+                        !isNullish(selectedId) &&
+                        !isEmpty(eventData)
+                    ) {
+                        const filteredTemperatureData = (
+                            eventData as Temperature[]
+                        ).filter(
+                            (eachTemperatureDatum) =>
+                                eachTemperatureDatum.pi_id === selectedId.pi_id,
+                        );
+                        setTemperatureData(filteredTemperatureData);
                     }
                 }
             }
