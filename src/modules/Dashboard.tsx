@@ -158,10 +158,15 @@ export const Dashboard = (): React.JSX.Element => {
      * Handler for attaching the event listeners for the initialized websocket instance.
      */
     React.useEffect(() => {
+        console.log(
+            websocketReference.current,
+            websocketReference.current?.readyState,
+        );
         if (
             !isNullish(websocketReference.current) &&
             websocketReference.current.readyState === WebSocket.OPEN
         ) {
+            console.log("setting event listener");
             websocketReference.current.addEventListener(
                 "message",
                 onWebsocketMessage,
