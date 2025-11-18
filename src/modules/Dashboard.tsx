@@ -200,7 +200,7 @@ export const Dashboard = (): React.JSX.Element => {
                             key={`rpi_select_${eachPiId.id.toString()}`}
                             value={stringifyJson(eachPiId)}
                         >
-                            {eachPiId.pi_id?.toString()}
+                            {eachPiId.name?.toString()}
                         </option>
                     ))}
                 </select>
