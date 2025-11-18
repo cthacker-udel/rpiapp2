@@ -121,7 +121,6 @@ export const Dashboard = (): React.JSX.Element => {
     const onWebsocketMessage = React.useCallback(
         (messageEvent: MessageEvent) => {
             const { data } = messageEvent;
-            console.log("processed websocket message", data, messageEvent);
             if (!isEmpty(data)) {
                 const parsedData = parseJson<WebsocketResponse>(data);
                 if (!isNullish(parsedData)) {
@@ -216,7 +215,7 @@ export const Dashboard = (): React.JSX.Element => {
                         <LineChart data={temperatureData}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis
-                                dataKey="temperature_timestamp"
+                                dataKey="created_at"
                                 tickFormatter={formatDate}
                             />
                             <YAxis tickFormatter={degToString} />
@@ -241,7 +240,7 @@ export const Dashboard = (): React.JSX.Element => {
                                 type="monotone"
                             />
                             <Brush
-                                dataKey="temperature_timestamp"
+                                dataKey="created_at"
                                 height={30}
                                 stroke="#867835"
                                 tickFormatter={formatDate}
