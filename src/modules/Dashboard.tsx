@@ -24,8 +24,6 @@ import {
 
 import type { Id } from "../@types/api/id/Id";
 import type { Temperature } from "../@types/api/temperature/Temperature";
-import type { IdMessagePayload } from "../@types/websocket/ids/IdMessagePayload";
-import type { TemperatureMessagePayload } from "../@types/websocket/temperature/TemperatureMessagePayload";
 import type { WebsocketResponse } from "../@types/websocket/WebsocketResponse";
 import { Events } from "../common/constants/Events";
 import { parseJson } from "../common/helpers/api/parseJson";
