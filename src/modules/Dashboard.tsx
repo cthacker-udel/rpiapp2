@@ -123,6 +123,7 @@ export const Dashboard = (): React.JSX.Element => {
     const onWebsocketMessage = React.useCallback(
         (messageEvent: MessageEvent) => {
             const { data } = messageEvent;
+            console.log("processed websocket message", data, messageEvent);
             if (!isEmpty(data)) {
                 const parsedData = parseJson<WebsocketResponse>(data);
                 if (!isNullish(parsedData)) {
